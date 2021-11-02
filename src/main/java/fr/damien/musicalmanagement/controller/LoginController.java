@@ -4,8 +4,12 @@ import fr.damien.musicalmanagement.MainApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class LoginController {
 
@@ -31,17 +35,22 @@ public class LoginController {
     }
 
     @FXML
-    void loginConnection(ActionEvent event) {
+    void loginConnection(ActionEvent event) throws IOException {
         String emailUser = emailText.getText();
         String password = passwordText.getText();
 
         Alert message = new Alert(Alert.AlertType.ERROR);
         if (emailUser.equals("damien@gmail.com") && password.equals("12345")) {
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("home.fxml"));
+            Parent root = fxmlLoader.load();
 
-//                message.setContentText("Welcome " + emailUser);
-//                message.setTitle("Welcome");
-//                message.show();
+            HomeController homeController = fxmlLoader.getController();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Home");
+            stage.show();
+
         }else {
 
             message.setContentText("Invalid Login Details");
