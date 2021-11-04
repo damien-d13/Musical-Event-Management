@@ -44,11 +44,10 @@ public class LoginController {
 
 
 
-        ResultSet rs = UserRepository.findUser();
+        ResultSet rs = UserRepository.findUserLogin();
 
         while (rs.next()) {
-//            System.out.println(rs.getString("user_email") +
-//               rs.getString("user_password"));
+
             Alert message = new Alert(Alert.AlertType.ERROR);
             if (emailUser.equals(rs.getString("user_email") ) && password.equals(rs.getString("user_password"))) {
 
@@ -62,6 +61,8 @@ public class LoginController {
                 Parent root = fxmlLoader.load();
 
                 HomeController homeController = fxmlLoader.getController();
+
+                homeController.showUser(rs.getString("user_email"));
 
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
