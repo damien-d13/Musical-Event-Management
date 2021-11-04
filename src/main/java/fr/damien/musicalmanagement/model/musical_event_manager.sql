@@ -21,7 +21,6 @@ drop table if exists categorize;
 drop table if exists creates;
 drop table if exists localise;
 drop table if exists program;
-
 CREATE TABLE t_group(
                         group_id INT AUTO_INCREMENT,
                         group_label VARCHAR(50) ,
@@ -90,9 +89,9 @@ CREATE TABLE t_user(
                        user_lastname VARCHAR(50)  NOT NULL,
                        user_birth_day DATE NOT NULL,
                        user_email VARCHAR(50)  NOT NULL,
-                       user_password VARCHAR(50) NOT NULL,
                        user_phone VARCHAR(50) ,
                        user_fax VARCHAR(50) ,
+                       user_password VARCHAR(50)  NOT NULL,
                        role_id INT NOT NULL,
                        civility_id INT NOT NULL,
                        responsibility_id INT NOT NULL,
@@ -110,8 +109,10 @@ CREATE TABLE t_meet(
                        meet_date_stop DATE NOT NULL,
                        meet_periodicity VARCHAR(50)  NOT NULL,
                        meet_nb_customers_expected INT NOT NULL,
+                       address_id INT NOT NULL,
                        user_id INT NOT NULL,
                        PRIMARY KEY(meet_id),
+                       FOREIGN KEY(address_id) REFERENCES t_address(address_id),
                        FOREIGN KEY(user_id) REFERENCES t_user(user_id)
 );
 
@@ -165,15 +166,13 @@ CREATE TABLE localise(
 
 CREATE TABLE program(
                         group_id INT,
-                        address_id INT,
                         song_id INT,
                         meet_id INT,
                         program_date DATE NOT NULL,
                         program_time_start TIME NOT NULL,
                         program_time_stop VARCHAR(50)  NOT NULL,
-                        PRIMARY KEY(group_id, address_id, song_id, meet_id),
+                        PRIMARY KEY(group_id, song_id, meet_id),
                         FOREIGN KEY(group_id) REFERENCES t_group(group_id),
-                        FOREIGN KEY(address_id) REFERENCES t_address(address_id),
                         FOREIGN KEY(song_id) REFERENCES t_song(song_id),
                         FOREIGN KEY(meet_id) REFERENCES t_meet(meet_id)
 );

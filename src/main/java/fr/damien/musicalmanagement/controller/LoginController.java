@@ -1,6 +1,7 @@
 package fr.damien.musicalmanagement.controller;
 
 import fr.damien.musicalmanagement.MainApplication;
+import fr.damien.musicalmanagement.repository.UserRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,8 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class LoginController {
 
@@ -35,28 +38,45 @@ public class LoginController {
     }
 
     @FXML
-    void loginConnection(ActionEvent event) throws IOException {
+    void loginConnection(ActionEvent event) throws IOException, SQLException {
         String emailUser = emailText.getText();
         String password = passwordText.getText();
 
-        Alert message = new Alert(Alert.AlertType.ERROR);
-        if (emailUser.equals("damien@gmail.com") && password.equals("12345")) {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("home.fxml"));
-            Parent root = fxmlLoader.load();
 
-            HomeController homeController = fxmlLoader.getController();
 
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Home");
-            stage.show();
+        ResultSet rs = UserRepository.findUser();
 
-        }else {
+        while (rs.next()) {
+//            System.out.println(rs.getString("user_email") +
+//               rs.getString("user_password"));
+            Alert message = new Alert(Alert.AlertType.ERROR);
+            if (emailUser.equals(rs.getString("user_email") ) && password.equals(rs.getString("user_password"))) {
 
-            message.setContentText("Invalid Login Details");
-            message.setTitle("Error");
-            message.show();
+
+
+                //hide login interface
+                btnConnection.getScene().getWindow().hide();
+
+                //Show main interface
+                FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("home.fxml"));
+                Parent root = fxmlLoader.load();
+
+                HomeController homeController = fxmlLoader.getController();
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Home");
+                stage.show();
+
+            }else {
+
+                message.setContentText("Invalid Login Details");
+                message.setTitle("Error");
+                message.show();
+            }
         }
+
+
     }
 
     @FXML
