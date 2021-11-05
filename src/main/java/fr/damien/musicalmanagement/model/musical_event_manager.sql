@@ -1,6 +1,6 @@
 
 DROP DATABASE IF EXISTS musical_event_manager_db;
-CREATE DATABASE musical_event_manager_db CHARACTER SET utf8;
+CREATE DATABASE musical_event_manager_db CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE musical_event_manager_db;
 
 drop table if exists t_group;
