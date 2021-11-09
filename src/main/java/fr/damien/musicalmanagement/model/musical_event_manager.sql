@@ -170,7 +170,7 @@ CREATE TABLE program(
                         meet_id INT,
                         program_date DATE NOT NULL,
                         program_time_start TIME NOT NULL,
-                        program_time_stop VARCHAR(50)  NOT NULL,
+                        program_time_stop TIME NOT NULL,
                         PRIMARY KEY(group_id, song_id, meet_id),
                         FOREIGN KEY(group_id) REFERENCES t_group(group_id),
                         FOREIGN KEY(song_id) REFERENCES t_song(song_id),
