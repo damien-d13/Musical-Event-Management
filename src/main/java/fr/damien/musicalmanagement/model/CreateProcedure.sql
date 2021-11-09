@@ -19,10 +19,58 @@ END //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE find_song
+CREATE PROCEDURE all_instrument
+BEGIN
+    SELECT *
+    FROM t_instrument;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE all_song
 BEGIN
     SELECT *
     FROM t_song;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE all_meet
+BEGIN
+    SELECT *
+    FROM t_meet;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE all_country
+BEGIN
+    SELECT *
+    FROM t_address;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE all_speciality
+BEGIN
+    SELECT *
+    FROM t_speciality;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE all_group
+BEGIN
+    SELECT *
+    FROM t_group;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE all_address
+BEGIN
+    SELECT *
+    FROM t_address;
 END //
 DELIMITER ;
 
@@ -49,11 +97,75 @@ DELIMITER ;
 
 DELIMITER //
 CREATE PROCEDURE find_user_with_meet_spe
-(IN songid CHAR(20), groupid CHAR(20))
+(IN spe CHAR(20), meet CHAR(20))
 BEGIN
-    SELECT user_id
-    FROM t_meet
-#     WHERE meet_id = songid AND group_id = groupid;
+    SELECT p.user_id
+    from t_user
+             INNER join participates p on t_user.user_id = p.user_id
+             INNER JOIN t_group tg on p.group_id = tg.group_id
+             INNER JOIN program prog on tg.group_id = prog.group_id
+             INNER JOIN t_meet tm on prog.meet_id = tm.meet_id
+             INNER JOIN specialized s on t_user.user_id = s.user_id
+             INNER JOIN t_speciality ts on s.speciality_id = ts.speciality_id
+    WHERE prog.meet_id = meet and ts.speciality_id = spe
+    ;
 END //
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE find_song_with_time_location
+(IN address CHAR(20), timemin CHAR(20))
+BEGIN
+    SELECT song_id
+    from t_song s
+            INNER JOIN program p on s.song_id = p.song_id
+            INNER JOIN t_meet tm on p.meet_id = tm.meet_id
+            INNER JOIN t_address ta on tm.address_id = ta.address_id
+    WHERE ta.address_id = address and  s.song_duration >= timemin
+    ;
+END //
+DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE find_meet_by_nb_group
+(IN nbgroup CHAR(20))
+BEGIN
+    SELECT t_meet.meet_label, GROUP_CONCAT(tg.group_label)
+    FROM t_meet
+             INNER JOIN  program p on t_meet.meet_id = p.meet_id
+             INNER JOIN t_group tg on p.group_id = tg.group_id
+    GROUP BY t_meet.meet_id
+    HAVING COUNT(tg.group_id) >= nbgroup;
+END //
+DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE find_meet_by_instrument
+(IN instrument CHAR(20))
+BEGIN
+    SELECT t_meet.meet_label
+    FROM t_meet
+             INNER JOIN  program p on t_meet.meet_id = p.meet_id
+             INNER JOIN t_group tg on p.group_id = tg.group_id
+             INNER JOIN participates part on tg.group_id = part.group_id
+             INNER JOIN t_user tu on part.user_id = tu.user_id
+             INNER JOIN practice prac on tu.user_id = prac.user_id
+    WHERE prac.instrument_id = instrument;
+END //
+DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE find_meet_by_group_address
+(IN groupid integer, address integer)
+BEGIN
+    SELECT *
+    FROM program
+    INNER JOIN t_group tg on program.group_id = tg.group_id
+    INNER JOIN t_meet tm on program.meet_id = tm.meet_id
+    INNER JOIN t_address ta on tm.address_id = ta.address_id
+    WHERE program.group_id = groupid AND ta.address_id = address;
+END //
+DELIMITER ;
