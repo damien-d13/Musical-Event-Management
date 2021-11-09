@@ -8,7 +8,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,6 +24,91 @@ public class HomeController {
 
     @FXML
     private Button btnLogout;
+
+    @FXML
+    private ComboBox<?> boxTitle;
+
+    @FXML
+    private ComboBox<?> boxGroup;
+
+    @FXML
+    private ComboBox<?> boxSpeciality;
+
+    @FXML
+    private ComboBox<?> boxMeet;
+
+    @FXML
+    private ComboBox<?> boxCountry;
+
+    @FXML
+    private ComboBox<?> boxInstrument;
+
+    @FXML
+    private ComboBox<?> boxAddress;
+
+    @FXML
+    private TextField boxTime;
+
+    @FXML
+    private Button searchGroup;
+
+    @FXML
+    private Button searchMeet;
+
+    @FXML
+    private Button searchUser;
+
+    @FXML
+    private Button SearchTitle;
+
+    @FXML
+    private TextField boxNbGroup;
+
+    @FXML
+    private Button searchMeetNbGroup;
+
+    @FXML
+    private Button searchMeetInstru;
+
+    @FXML
+    private Button searchProgamAddressGroup;
+
+
+    @FXML
+    void searchGroup(ActionEvent event) {
+
+    }
+
+    @FXML
+    void searchMeetByInstrument(ActionEvent event) {
+
+    }
+
+    @FXML
+    void searchMeetByNbGroup(ActionEvent event) {
+
+    }
+
+    @FXML
+    void searchMeetByTitleGroup(ActionEvent event) {
+
+    }
+
+    @FXML
+    void searchProgramByAddressGroup(ActionEvent event) {
+
+    }
+
+    @FXML
+    void searchTitleByDurationCountry(ActionEvent event) {
+
+    }
+
+    @FXML
+    void searchUserBySpecMeet(ActionEvent event) {
+
+    }
+
 
     @FXML
     void logoutConnection(ActionEvent event) throws IOException {
@@ -50,4 +137,8 @@ public class HomeController {
         }
 
     }
+
+
+
+
 }

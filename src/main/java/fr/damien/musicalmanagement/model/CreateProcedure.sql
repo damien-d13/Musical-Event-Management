@@ -19,7 +19,7 @@ END //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE all_instrument
+CREATE PROCEDURE all_instrument()
 BEGIN
     SELECT *
     FROM t_instrument;
@@ -27,7 +27,7 @@ END //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE all_song
+CREATE PROCEDURE all_song()
 BEGIN
     SELECT *
     FROM t_song;
@@ -35,7 +35,7 @@ END //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE all_meet
+CREATE PROCEDURE all_meet()
 BEGIN
     SELECT *
     FROM t_meet;
@@ -43,7 +43,7 @@ END //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE all_country
+CREATE PROCEDURE all_country()
 BEGIN
     SELECT *
     FROM t_address;
@@ -51,7 +51,7 @@ END //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE all_speciality
+CREATE PROCEDURE all_speciality()
 BEGIN
     SELECT *
     FROM t_speciality;
@@ -59,7 +59,7 @@ END //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE all_group
+CREATE PROCEDURE all_group()
 BEGIN
     SELECT *
     FROM t_group;
@@ -67,7 +67,16 @@ END //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE all_address
+CREATE PROCEDURE all_group_number()
+BEGIN
+    SELECT COUNT(t_group.group_label)
+    FROM t_group;
+END //
+DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE all_address()
 BEGIN
     SELECT *
     FROM t_address;
@@ -75,7 +84,7 @@ END //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE find_user_info
+CREATE PROCEDURE find_group_by_song
 (IN songid CHAR(20))
 BEGIN
     SELECT group_label
