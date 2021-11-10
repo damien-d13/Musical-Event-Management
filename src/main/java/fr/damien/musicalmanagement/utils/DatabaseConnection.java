@@ -10,7 +10,7 @@ public class DatabaseConnection {
     public static Connection getConnection() {
         String db = "musical_event_manager_db";
         String user = "root";
-        String password = "";
+        String password = "root";
         String url = "jdbc:mysql://localhost:3306/" + db;
 
         try {

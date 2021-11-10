@@ -29,7 +29,7 @@ public class GroupRepository {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Error in Address Repository");
+            System.out.println("Error in Group Repository");
         }
 
         return groupList;

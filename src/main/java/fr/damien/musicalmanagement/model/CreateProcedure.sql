@@ -95,12 +95,13 @@ END //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE find_meet
+CREATE PROCEDURE find_meet_by_song_group
 (IN songid CHAR(20), groupid CHAR(20))
 BEGIN
-    SELECT meet_id
-    FROM program
-    WHERE song_id = songid AND group_id = groupid;
+    SELECT *
+    FROM t_meet
+    INNER JOIN program p on t_meet.meet_id = p.meet_id
+    WHERE p.song_id = songid AND p.group_id = groupid;
 END //
 DELIMITER ;
 
