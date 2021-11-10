@@ -13,6 +13,11 @@ public class Address {
     public Address() {
     }
 
+    public Address(String region, String country) {
+        this.region = region;
+        this.country = country;
+    }
+
     public Address(String label, int number, String street, String complement, String region, String country) {
         this.label = label;
         this.number = number;
