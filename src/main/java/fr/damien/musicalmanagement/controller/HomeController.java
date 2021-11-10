@@ -1,7 +1,10 @@
 package fr.damien.musicalmanagement.controller;
 
 import fr.damien.musicalmanagement.MainApplication;
+import fr.damien.musicalmanagement.entity.Address;
+import fr.damien.musicalmanagement.repository.AddressRepository;
 import fr.damien.musicalmanagement.repository.UserRepository;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -138,6 +141,14 @@ public class HomeController implements Initializable {
         if (rs.next()) {
             UserName.setText(rs.getString("user_firstname"));
         }
+
+    }
+
+    public void showAllAddress() {
+
+        AddressRepository obsAddress =new AddressRepository();
+        ObservableList<Address> addressList = obsAddress.getAddressList();
+
 
     }
 

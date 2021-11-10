@@ -13,6 +13,11 @@ public class Address {
     public Address() {
     }
 
+    public Address(int id, String label) {
+        this.id = id;
+        this.label = label;
+    }
+
     public Address(String region, String country) {
         this.region = region;
         this.country = country;
