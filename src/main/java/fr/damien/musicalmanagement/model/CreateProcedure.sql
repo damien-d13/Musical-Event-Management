@@ -167,7 +167,7 @@ DELIMITER ;
 
 
 DELIMITER //
-CREATE PROCEDURE find_meet_by_group_address
+CREATE PROCEDURE find_program_by_group_address
 (IN groupid integer, address integer)
 BEGIN
     SELECT *

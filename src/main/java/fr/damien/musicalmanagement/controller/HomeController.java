@@ -2,7 +2,11 @@ package fr.damien.musicalmanagement.controller;
 
 import fr.damien.musicalmanagement.MainApplication;
 import fr.damien.musicalmanagement.entity.Address;
+import fr.damien.musicalmanagement.entity.Group;
+import fr.damien.musicalmanagement.entity.Program;
 import fr.damien.musicalmanagement.repository.AddressRepository;
+import fr.damien.musicalmanagement.repository.GroupRepository;
+import fr.damien.musicalmanagement.repository.ProgramRepository;
 import fr.damien.musicalmanagement.repository.UserRepository;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,16 +15,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
@@ -35,7 +39,7 @@ public class HomeController implements Initializable {
     private ComboBox<?> boxTitle;
 
     @FXML
-    private ComboBox<?> boxGroup;
+    private ComboBox<Group> boxGroup;
 
     @FXML
     private ComboBox<?> boxSpeciality;
@@ -47,10 +51,10 @@ public class HomeController implements Initializable {
     private ComboBox<?> boxCountry;
 
     @FXML
-    private ComboBox<?> boxInstrument;
+    private ComboBox<String> boxInstrument;
 
     @FXML
-    private ComboBox<?> boxAddress;
+    private ComboBox<Address> boxAddress;
 
     @FXML
     private TextField boxTime;
@@ -79,6 +83,29 @@ public class HomeController implements Initializable {
     @FXML
     private Button searchProgamAddressGroup;
 
+    @FXML
+    private TableView<Program> tableViewProgram;
+
+    @FXML
+    private TableColumn<Program, Integer> programGroup;
+
+    @FXML
+    private TableColumn<Program, Integer> programSong;
+
+    @FXML
+    private TableColumn<Program, Integer> programMeet;
+
+    @FXML
+    private TableColumn<Program, Date> programDate;
+
+    @FXML
+    private TableColumn<Program, Time> programTimeStart;
+
+    @FXML
+    private TableColumn<Program, Time> programTimeEnd;
+
+
+
 
     @FXML
     void searchGroup(ActionEvent event) {
@@ -102,6 +129,43 @@ public class HomeController implements Initializable {
 
     @FXML
     void searchProgramByAddressGroup(ActionEvent event) {
+
+        int addressId;
+        int groupId;
+
+
+
+        if (!boxAddress.getSelectionModel().isEmpty() && !boxGroup.getSelectionModel().isEmpty()) {
+            addressId = boxAddress.getSelectionModel().getSelectedItem().getId();
+            System.out.println(boxAddress.getSelectionModel().getSelectedItem().getId());
+
+            groupId = boxGroup.getSelectionModel().getSelectedItem().getId();
+            System.out.println(boxGroup.getSelectionModel().getSelectedItem().getId());
+
+            System.out.println(ProgramRepository.getProgramObservableList(groupId, addressId));
+
+
+
+            ObservableList<Program> list = ProgramRepository.getProgramObservableList(groupId, addressId);
+
+
+            programGroup.setCellValueFactory(new PropertyValueFactory<Program, Integer>("groupId"));
+            programSong.setCellValueFactory(new PropertyValueFactory<Program, Integer>("songId"));
+            programMeet.setCellValueFactory(new PropertyValueFactory<Program, Integer>("meetId"));
+            programDate.setCellValueFactory(new PropertyValueFactory<Program, Date>("programDate"));
+            programTimeStart.setCellValueFactory(new PropertyValueFactory<Program, Time>("programTimeStart"));
+            programTimeEnd.setCellValueFactory(new PropertyValueFactory<Program, Time>("programTimeStop"));
+
+            tableViewProgram.setItems(list);
+
+
+        }
+
+
+
+
+
+
 
     }
 
@@ -146,14 +210,27 @@ public class HomeController implements Initializable {
 
     public void showAllAddress() {
 
-        AddressRepository obsAddress =new AddressRepository();
-        ObservableList<Address> addressList = obsAddress.getAddressList();
+//        boxAddress.getItems().addAll(AddressRepository.getAddressList());
+
+        boxAddress.setItems(AddressRepository.getAddressObservableList());
+    }
+
+    public void showAllGroup() {
+//        boxGroup.getItems().addAll(GroupRepository.getGroupList());
+        boxGroup.setItems(GroupRepository.getGroupObservableList());
+    }
+
+    public void showProgramByGroupAddress() {
+
 
 
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        showAllAddress();
+        showAllGroup();
 
     }
 

@@ -6,27 +6,53 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.util.LinkedList;
 
 public class AddressRepository {
 
-    public ObservableList<Address> getAddressList() {
-    ObservableList<Address> addressObservableList = FXCollections.observableArrayList();
+    private static LinkedList<String> addressList = new LinkedList<>();
 
-    String SQL_ADDRESS = "CALL all_address();";
-    try {
-        ResultSet rs = DatabaseConnection.getConnection().createStatement().executeQuery(SQL_ADDRESS);
+    public static LinkedList<String> getAddressList() {
 
-        while (rs.next()) {
-            Address address = new Address(rs.getInt("address_id"), rs.getString("address_label"));
-            addressObservableList.add(address);
+        String SQL_ADDRESS = "CALL all_address();";
+
+        try {
+            ResultSet rs = DatabaseConnection.getConnection().createStatement().executeQuery(SQL_ADDRESS);
+
+            while (rs.next()) {
+                String address = rs.getString("address_label");
+                addressList.add(address);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error in Address Repository");
         }
 
-    } catch (Exception e) {
-        e.printStackTrace();
-        System.out.println("Error in Address Repository");
+        return addressList;
     }
+
+    public static ObservableList<Address> getAddressObservableList() {
+        ObservableList<Address> addressObservableList = FXCollections.observableArrayList();
+
+        String SQL_ADDRESS = "CALL all_address();";
+        try {
+            ResultSet rs = DatabaseConnection.getConnection().createStatement().executeQuery(SQL_ADDRESS);
+
+            while (rs.next()) {
+                Address address = new Address(rs.getInt("address_id"), rs.getString("address_label"));
+                System.out.println(address.toString());
+                addressObservableList.add(address);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error in Address Repository");
+        }
 
         return addressObservableList;
     }
+
+
+
 }

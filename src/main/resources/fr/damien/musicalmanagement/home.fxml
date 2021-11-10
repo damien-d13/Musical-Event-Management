@@ -19,44 +19,98 @@
       <Label layoutX="25.0" layoutY="34.0" text="Welcome " textFill="WHITE" />
       <Label fx:id="UserName" layoutX="89.0" layoutY="34.0" text="Anon" />
       <Button fx:id="btnLogout" layoutX="1132.0" layoutY="17.0" mnemonicParsing="false" onAction="#logoutConnection" text="Logout" />
-      <TableView layoutX="721.0" layoutY="153.0" prefHeight="624.0" prefWidth="457.0">
+      <TableView fx:id="tableViewProgram" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0" visible="false">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C3" />
-            <TableColumn prefWidth="75.0" text="C4" />
-            <TableColumn prefWidth="75.0" text="C5" />
+          <TableColumn fx:id="programGroup" prefWidth="77.0" text="Group" />
+            <TableColumn fx:id="programSong" prefWidth="79.0" text="Song" />
+            <TableColumn fx:id="programMeet" prefWidth="75.0" text="Meet" />
+          <TableColumn fx:id="programDate" prefWidth="72.0" text="Date" />
+            <TableColumn fx:id="programTimeStart" prefWidth="89.0" text="Time start" />
+            <TableColumn fx:id="programTimeEnd" prefWidth="116.0" text="Time end" />
         </columns>
       </TableView>
       <Label layoutX="27.0" layoutY="167.0" text="Find group WHERE title =" textFill="WHITE" />
       <ComboBox fx:id="boxTitle" layoutX="174.0" layoutY="163.0" prefWidth="150.0" promptText="Title" />
-      <ComboBox fx:id="boxTitle" layoutX="214.0" layoutY="233.0" prefWidth="150.0" promptText="Title" />
-      <ComboBox fx:id="boxGroup" layoutX="462.0" layoutY="233.0" prefWidth="150.0" promptText="Group" />
-      <Label layoutX="27.0" layoutY="237.0" text="Find meeting WHERE song title = " textFill="WHITE" />
-      <Label layoutX="382.0" layoutY="237.0" text="and  group =" textFill="WHITE" />
-      <Label layoutX="24.0" layoutY="318.0" text="Find user WHERE Speciality = " textFill="WHITE" />
-      <ComboBox fx:id="boxSpeciality" layoutX="186.0" layoutY="314.0" prefWidth="150.0" promptText="Speciality" />
-      <Label layoutX="352.0" layoutY="318.0" text="and meeting =" textFill="WHITE" />
-      <ComboBox fx:id="boxMeet" layoutX="437.0" layoutY="314.0" prefWidth="150.0" promptText="Meet" />
-      <ComboBox fx:id="boxCountry" layoutX="462.0" layoutY="379.0" prefWidth="150.0" promptText="Country" />
-      <ComboBox fx:id="boxInstrument" layoutX="222.0" layoutY="499.0" prefWidth="150.0" promptText="Instrument" />
-      <ComboBox fx:id="boxAddress" layoutX="207.0" layoutY="567.0" prefWidth="150.0" promptText="Address" />
-      <ComboBox fx:id="boxGroup" layoutX="442.0" layoutY="567.0" prefWidth="150.0" promptText="Group" />
-      <Label layoutX="25.0" layoutY="383.0" text="Find title WHERE duration time is superior to" textFill="WHITE" />
-      <TextField fx:id="boxTime" layoutX="271.0" layoutY="379.0" prefHeight="25.0" prefWidth="53.0" text="TIME" />
-      <Label layoutX="338.0" layoutY="383.0" text="Minutes and country = " textFill="WHITE" />
+      <ComboBox fx:id="boxTitle" layoutX="214.0" layoutY="266.0" prefWidth="150.0" promptText="Title" />
+      <ComboBox fx:id="boxGroup" layoutX="462.0" layoutY="266.0" prefWidth="150.0" promptText="Group" />
+      <Label layoutX="27.0" layoutY="270.0" text="Find meeting WHERE song title = " textFill="WHITE" />
+      <Label layoutX="381.0" layoutY="270.0" text="and  group =" textFill="WHITE" />
+      <Label layoutX="32.0" layoutY="364.0" text="Find user WHERE Speciality = " textFill="WHITE" />
+      <ComboBox fx:id="boxSpeciality" layoutX="193.0" layoutY="360.0" prefWidth="150.0" promptText="Speciality" />
+      <Label layoutX="352.0" layoutY="364.0" text="and meeting =" textFill="WHITE" />
+      <ComboBox fx:id="boxMeet" layoutX="437.0" layoutY="360.0" prefWidth="150.0" promptText="Meet" />
+      <ComboBox fx:id="boxCountry" layoutX="462.0" layoutY="446.0" prefWidth="150.0" promptText="Country" />
+      <ComboBox fx:id="boxInstrument" layoutX="223.0" layoutY="625.0" prefWidth="150.0" promptText="Instrument" />
+      <ComboBox fx:id="boxAddress" layoutX="207.0" layoutY="723.0" prefWidth="150.0" promptText="Address" />
+      <ComboBox fx:id="boxGroup" layoutX="437.0" layoutY="723.0" prefWidth="150.0" promptText="Group" />
+      <Label layoutX="34.0" layoutY="450.0" text="Find title WHERE duration time is superior to" textFill="WHITE" />
+      <TextField fx:id="boxTime" layoutX="282.0" layoutY="446.0" prefHeight="25.0" prefWidth="53.0" text="TIME" />
+      <Label layoutX="338.0" layoutY="450.0" text="Minutes and country = " textFill="WHITE" />
       <Button fx:id="searchGroup" layoutX="338.0" layoutY="163.0" mnemonicParsing="false" onAction="#searchGroup" text="Search" />
-      <Button fx:id="searchMeet" layoutX="624.0" layoutY="233.0" mnemonicParsing="false" onAction="#searchMeetByTitleGroup" text="Search" />
-      <Button fx:id="searchUser" layoutX="600.0" layoutY="314.0" mnemonicParsing="false" onAction="#searchUserBySpecMeet" text="Search" />
-      <Button fx:id="SearchTitle" layoutX="625.0" layoutY="379.0" mnemonicParsing="false" onAction="#searchTitleByDurationCountry" text="Search" />
-      <Label layoutX="26.0" layoutY="445.0" text="Find meeting WHERE number of group =" textFill="WHITE" />
-      <TextField fx:id="boxNbGroup" layoutX="263.0" layoutY="441.0" prefHeight="25.0" prefWidth="70.0" text="Nb Group" />
-      <Label layoutX="347.0" layoutY="445.0" text="group" textFill="WHITE" />
-      <Label layoutX="26.0" layoutY="503.0" text="Find meeting WHERE instrument = " textFill="WHITE" />
-      <Label layoutX="26.0" layoutY="571.0" text="Find program WHERE address =" textFill="WHITE" />
-      <Label layoutX="367.0" layoutY="571.0" text="and group =" textFill="WHITE" />
-      <Button fx:id="searchMeetNbGroup" layoutX="391.0" layoutY="441.0" mnemonicParsing="false" onAction="#searchMeetByNbGroup" text="Search" />
-      <Button fx:id="searchMeetInstru" layoutX="391.0" layoutY="499.0" mnemonicParsing="false" onAction="#searchMeetByInstrument" text="Search" />
-      <Button fx:id="searchProgamAddressGroup" layoutX="614.0" layoutY="567.0" mnemonicParsing="false" onAction="#searchProgramByAddressGroup" text="Search" />
+      <Button fx:id="searchMeet" layoutX="625.0" layoutY="266.0" mnemonicParsing="false" onAction="#searchMeetByTitleGroup" text="Search" />
+      <Button fx:id="searchUser" layoutX="614.0" layoutY="360.0" mnemonicParsing="false" onAction="#searchUserBySpecMeet" text="Search" />
+      <Button fx:id="SearchTitle" layoutX="625.0" layoutY="446.0" mnemonicParsing="false" onAction="#searchTitleByDurationCountry" text="Search" />
+      <Label layoutX="34.0" layoutY="541.0" text="Find meeting WHERE number of group =" textFill="WHITE" />
+      <TextField fx:id="boxNbGroup" layoutX="263.0" layoutY="537.0" prefHeight="25.0" prefWidth="70.0" text="Nb Group" />
+      <Label layoutX="341.0" layoutY="541.0" text="group" textFill="WHITE" />
+      <Label layoutX="32.0" layoutY="629.0" text="Find meeting WHERE instrument = " textFill="WHITE" />
+      <Label layoutX="32.0" layoutY="727.0" text="Find program WHERE address =" textFill="WHITE" />
+      <Label layoutX="367.0" layoutY="727.0" text="and group =" textFill="WHITE" />
+      <Button fx:id="searchMeetNbGroup" layoutX="390.0" layoutY="537.0" mnemonicParsing="false" onAction="#searchMeetByNbGroup" text="Search" />
+      <Button fx:id="searchMeetInstru" layoutX="390.0" layoutY="625.0" mnemonicParsing="false" onAction="#searchMeetByInstrument" text="Search" />
+      <Button fx:id="searchProgamAddressGroup" layoutX="600.0" layoutY="723.0" mnemonicParsing="false" onAction="#searchProgramByAddressGroup" text="Search" />
+      <TableView fx:id="tableViewTitleSong" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0" visible="false">
+         <columns>
+            <TableColumn fx:id="TitleSong" prefWidth="148.0" text="Title song" />
+            <TableColumn fx:id="SongDate" prefWidth="169.0" text="Song date" />
+            <TableColumn fx:id="SongDuration" prefWidth="174.0" text="Song duration" />
+         </columns>
+      </TableView>
+      <TableView fx:id="tableViewGroup" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0" visible="false">
+         <columns>
+            <TableColumn fx:id="programGroup11" prefWidth="234.0" text="Group " />
+            <TableColumn fx:id="programSong11" prefWidth="257.0" text="Characteristic" />
+         </columns>
+      </TableView>
+      <TableView fx:id="tableViewMeetBySonGroup" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0">
+         <columns>
+            <TableColumn fx:id="programGroup111" prefWidth="77.0" text="Group" />
+            <TableColumn fx:id="programSong111" prefWidth="79.0" text="Song" />
+            <TableColumn fx:id="programMeet111" prefWidth="75.0" text="Meet" />
+            <TableColumn fx:id="programDate111" prefWidth="72.0" text="Date" />
+            <TableColumn fx:id="programTimeStart111" prefWidth="89.0" text="Time start" />
+            <TableColumn fx:id="programTimeEnd111" prefWidth="116.0" text="Time end" />
+         </columns>
+      </TableView>
+      <TableView fx:id="tableViewUser" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0" visible="false">
+         <columns>
+            <TableColumn fx:id="programGroup1111" prefWidth="77.0" text="Group" />
+            <TableColumn fx:id="programSong1111" prefWidth="79.0" text="Song" />
+            <TableColumn fx:id="programMeet1111" prefWidth="75.0" text="Meet" />
+            <TableColumn fx:id="programDate1111" prefWidth="72.0" text="Date" />
+            <TableColumn fx:id="programTimeStart1111" prefWidth="89.0" text="Time start" />
+            <TableColumn fx:id="programTimeEnd1111" prefWidth="116.0" text="Time end" />
+         </columns>
+      </TableView>
+      <TableView fx:id="tableViewMeetByNbGroup" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0" visible="false">
+         <columns>
+            <TableColumn fx:id="programGroup11111" prefWidth="77.0" text="Group" />
+            <TableColumn fx:id="programSong11111" prefWidth="79.0" text="Song" />
+            <TableColumn fx:id="programMeet11111" prefWidth="75.0" text="Meet" />
+            <TableColumn fx:id="programDate11111" prefWidth="72.0" text="Date" />
+            <TableColumn fx:id="programTimeStart11111" prefWidth="89.0" text="Time start" />
+            <TableColumn fx:id="programTimeEnd11111" prefWidth="116.0" text="Time end" />
+         </columns>
+      </TableView>
+      <TableView fx:id="tableViewMeetByInstrument" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0" visible="false">
+         <columns>
+            <TableColumn fx:id="programGroup111111" prefWidth="77.0" text="Group" />
+            <TableColumn fx:id="programSong111111" prefWidth="79.0" text="Song" />
+            <TableColumn fx:id="programMeet111111" prefWidth="75.0" text="Meet" />
+            <TableColumn fx:id="programDate111111" prefWidth="72.0" text="Date" />
+            <TableColumn fx:id="programTimeStart111111" prefWidth="89.0" text="Time start" />
+            <TableColumn fx:id="programTimeEnd111111" prefWidth="116.0" text="Time end" />
+         </columns>
+      </TableView>
    </children>
 </Pane>

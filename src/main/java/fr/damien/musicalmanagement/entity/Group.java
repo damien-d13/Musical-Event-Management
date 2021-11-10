@@ -9,6 +9,11 @@ public class Group {
     public Group() {
     }
 
+    public Group(int id, String label) {
+        this.id = id;
+        this.label = label;
+    }
+
     public Group(String label, String characteristic) {
         this.label = label;
         this.characteristic = characteristic;
@@ -42,5 +47,10 @@ public class Group {
 
     public void setCharacteristic(String characteristic) {
         this.characteristic = characteristic;
+    }
+
+    @Override
+    public String toString() {
+        return this.getLabel() ;
     }
 }

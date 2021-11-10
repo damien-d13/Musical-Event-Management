@@ -42,18 +42,18 @@ public class LoginController {
         String emailUser = emailText.getText();
         String password = passwordText.getText();
 
+        boolean goodPassword = false;
+
 
 
         ResultSet rs = UserRepository.findUserLogin();
+        Alert message = new Alert(Alert.AlertType.ERROR);
 
         while (rs.next()) {
 
-            Alert message = new Alert(Alert.AlertType.ERROR);
-            if (emailUser.equals(rs.getString("user_email") ) && password.equals(rs.getString("user_password"))) {
+            if (!goodPassword){
 
-
-
-                //hide login interface
+//                //hide login interface
                 btnConnection.getScene().getWindow().hide();
 
                 //Show main interface
@@ -69,12 +69,41 @@ public class LoginController {
                 stage.setTitle("Home");
                 stage.show();
 
-            }else {
-
-                message.setContentText("Invalid Login Details");
-                message.setTitle("Error");
-                message.show();
+                break;
             }
+
+//            if (emailUser.equals(rs.getString("user_email") ) && password.equals(rs.getString("user_password"))) {
+//
+//
+//                goodPassword = true;
+//
+//                //hide login interface
+//                btnConnection.getScene().getWindow().hide();
+//
+//                //Show main interface
+//                FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("home.fxml"));
+//                Parent root = fxmlLoader.load();
+//
+//                HomeController homeController = fxmlLoader.getController();
+//
+//                homeController.showUser(rs.getString("user_email"));
+//
+//                Stage stage = new Stage();
+//                stage.setScene(new Scene(root));
+//                stage.setTitle("Home");
+//                stage.show();
+//            break;
+//
+//            }
+//            else {
+//
+//
+//            }
+        }
+        if (!goodPassword) {
+            message.setContentText("Invalid Login Details");
+            message.setTitle("Error");
+            message.show();
         }
 
 

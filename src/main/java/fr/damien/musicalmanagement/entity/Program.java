@@ -12,9 +12,6 @@ public class Program {
     private Time programTimeStart;
     private Time programTimeStop;
 
-    public Program() {
-    }
-
     public Program(int groupId, int songId, int meetId, Date programDate, Time programTimeStart, Time programTimeStop) {
         this.groupId = groupId;
         this.songId = songId;
@@ -71,4 +68,18 @@ public class Program {
     public void setProgramTimeStop(Time programTimeStop) {
         this.programTimeStop = programTimeStop;
     }
+
+    @Override
+    public String toString() {
+        return "Program{" +
+                "groupId=" + groupId +
+                ", songId=" + songId +
+                ", meetId=" + meetId +
+                ", programDate=" + programDate +
+                ", programTimeStart=" + programTimeStart +
+                ", programTimeStop=" + programTimeStop +
+                '}';
+    }
+
+
 }

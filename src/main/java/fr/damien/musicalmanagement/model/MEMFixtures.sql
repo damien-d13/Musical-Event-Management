@@ -30,6 +30,7 @@ INSERT INTO t_user (user_firstname, user_lastname, user_birth_day, user_email, u
 INSERT INTO t_user (user_firstname, user_lastname, user_birth_day, user_email, user_password, user_phone, user_fax, role_id, civility_id, responsibility_id) VALUES ('Rick', 'Sanchez', '1962-07-20', 'rick.sanchez@gmail.com', '12345', '07-50-57-10-29', 'none', 1, 1, 1);
 INSERT INTO t_user (user_firstname, user_lastname, user_birth_day, user_email, user_password, user_phone, user_fax, role_id, civility_id, responsibility_id) VALUES ('Yang', 'Kai', '1984-09-15', 'yang.kai@gmail.com', '12345', '07-50-57-10-29', 'none', 1, 1, 1);
 INSERT INTO t_user (user_firstname, user_lastname, user_birth_day, user_email, user_password, user_phone, user_fax, role_id, civility_id, responsibility_id) VALUES ('Baam', '25', '1984-09-14', '25.baam@gmail.com', '12345', '07-50-57-10-29', 'none', 1, 1, 1);
+INSERT INTO t_user (user_firstname, user_lastname, user_birth_day, user_email, user_password, user_phone, user_fax, role_id, civility_id, responsibility_id) VALUES ('Damien', 'Devoti', '1984-09-13', 'admin@gmail.com', 'admin', '07-50-57-10-29', 'none', 1, 1, 1);
 
 INSERT INTO localise (user_id, address_id) VALUES (1, 1);
 INSERT INTO localise (user_id, address_id) VALUES (2, 1);
