@@ -20,9 +20,9 @@
       <Label fx:id="UserName" layoutX="89.0" layoutY="34.0" text="Anon" />
       <Button fx:id="btnLogout" layoutX="1132.0" layoutY="17.0" mnemonicParsing="false" onAction="#logoutConnection" text="Logout" />
       <Label layoutX="27.0" layoutY="167.0" text="Find group WHERE title =" textFill="WHITE" />
-      <ComboBox fx:id="boxTitle" layoutX="174.0" layoutY="163.0" prefWidth="150.0" promptText="Title" />
+      <ComboBox fx:id="boxTitleGroup" layoutX="174.0" layoutY="163.0" prefWidth="150.0" promptText="Title" />
       <ComboBox fx:id="boxTitle" layoutX="214.0" layoutY="266.0" prefWidth="150.0" promptText="Title" />
-      <ComboBox fx:id="boxGroup" layoutX="462.0" layoutY="266.0" prefWidth="150.0" promptText="Group" />
+      <ComboBox fx:id="boxMeetGroup" layoutX="462.0" layoutY="266.0" prefWidth="150.0" promptText="Group" />
       <Label layoutX="27.0" layoutY="270.0" text="Find meeting WHERE song title = " textFill="WHITE" />
       <Label layoutX="381.0" layoutY="270.0" text="and  group =" textFill="WHITE" />
       <Label layoutX="32.0" layoutY="364.0" text="Find user WHERE Speciality = " textFill="WHITE" />
@@ -49,7 +49,13 @@
       <Button fx:id="searchMeetNbGroup" layoutX="390.0" layoutY="537.0" mnemonicParsing="false" onAction="#searchMeetByNbGroup" text="Search" />
       <Button fx:id="searchMeetInstru" layoutX="390.0" layoutY="625.0" mnemonicParsing="false" onAction="#searchMeetByInstrument" text="Search" />
       <Button fx:id="searchProgamAddressGroup" layoutX="600.0" layoutY="723.0" mnemonicParsing="false" onAction="#searchProgramByAddressGroup" text="Search" />
-      <TableView fx:id="tableViewProgram" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0" visible="false">
+      <TableView id="tableViewGroup" fx:id="tableViewGroup" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0" styleClass="tableView">
+         <columns>
+            <TableColumn fx:id="programGroup11" prefWidth="234.0" text="Group " />
+            <TableColumn fx:id="programSong11" prefWidth="257.0" text="Characteristic" />
+         </columns>
+      </TableView>
+      <TableView id="tableViewProgram" fx:id="tableViewProgram" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0" styleClass="tableView" visible="false">
         <columns>
           <TableColumn fx:id="programGroup" prefWidth="77.0" text="Group" />
             <TableColumn fx:id="programSong" prefWidth="79.0" text="Song" />
@@ -59,20 +65,14 @@
             <TableColumn fx:id="programTimeEnd" prefWidth="116.0" text="Time end" />
         </columns>
       </TableView>
-      <TableView fx:id="tableViewTitleSong" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0" visible="false">
+      <TableView id="tableViewTitleSong" fx:id="tableViewTitleSong" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0" styleClass="tableView" visible="false">
          <columns>
             <TableColumn fx:id="TitleSong" prefWidth="148.0" text="Title song" />
             <TableColumn fx:id="SongDate" prefWidth="169.0" text="Song date" />
             <TableColumn fx:id="SongDuration" prefWidth="174.0" text="Song duration" />
          </columns>
       </TableView>
-      <TableView fx:id="tableViewGroup" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0" visible="false">
-         <columns>
-            <TableColumn fx:id="programGroup11" prefWidth="234.0" text="Group " />
-            <TableColumn fx:id="programSong11" prefWidth="257.0" text="Characteristic" />
-         </columns>
-      </TableView>
-      <TableView fx:id="tableViewMeetBySonGroup" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0" visible="false">
+      <TableView id="tableViewMeet" fx:id="tableViewMeet" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0" styleClass="tableView" visible="false">
          <columns>
             <TableColumn fx:id="meetName" prefWidth="70.0" text="Meet name" />
             <TableColumn fx:id="meetDateStart" prefWidth="63.0" text="Date start" />
@@ -83,7 +83,7 @@
             <TableColumn fx:id="meetOrganizer" prefWidth="68.0" text="Organizer" />
          </columns>
       </TableView>
-      <TableView fx:id="tableViewUserBySpecialityMeet" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0" visible="false">
+      <TableView id="tableViewUserBySpecialityMeet" fx:id="tableViewUserBySpecialityMeet" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0" styleClass="tableView" visible="false">
          <columns>
             <TableColumn fx:id="userFirstname" prefWidth="77.0" text="Firstname" />
             <TableColumn fx:id="userLastname" prefWidth="79.0" text="Lastname" />

@@ -36,10 +36,13 @@ public class HomeController implements Initializable {
     private Button btnLogout;
 
     @FXML
+    private ComboBox<?> boxTitleGroup;
+
+    @FXML
     private ComboBox<?> boxTitle;
 
     @FXML
-    private ComboBox<Group> boxGroup;
+    private ComboBox<?> boxMeetGroup;
 
     @FXML
     private ComboBox<?> boxSpeciality;
@@ -51,10 +54,13 @@ public class HomeController implements Initializable {
     private ComboBox<?> boxCountry;
 
     @FXML
-    private ComboBox<String> boxInstrument;
+    private ComboBox<?> boxInstrument;
 
     @FXML
-    private ComboBox<Address> boxAddress;
+    private ComboBox<?> boxAddress;
+
+    @FXML
+    private ComboBox<?> boxGroup;
 
     @FXML
     private TextField boxTime;
@@ -84,48 +90,92 @@ public class HomeController implements Initializable {
     private Button searchProgamAddressGroup;
 
     @FXML
-    private TableView<Program> tableViewProgram;
+    private TableView<?> tableViewProgram;
 
     @FXML
-    private TableColumn<Program, Integer> programGroup;
+    private TableColumn<?, ?> programGroup;
 
     @FXML
-    private TableColumn<Program, Integer> programSong;
+    private TableColumn<?, ?> programSong;
 
     @FXML
-    private TableColumn<Program, Integer> programMeet;
+    private TableColumn<?, ?> programMeet;
 
     @FXML
-    private TableColumn<Program, Date> programDate;
+    private TableColumn<?, ?> programDate;
 
     @FXML
-    private TableColumn<Program, Time> programTimeStart;
+    private TableColumn<?, ?> programTimeStart;
 
     @FXML
-    private TableColumn<Program, Time> programTimeEnd;
-
-
-
+    private TableColumn<?, ?> programTimeEnd;
 
     @FXML
-    void searchGroup(ActionEvent event) {
-
-    }
+    private TableView<?> tableViewTitleSong;
 
     @FXML
-    void searchMeetByInstrument(ActionEvent event) {
-
-    }
+    private TableColumn<?, ?> TitleSong;
 
     @FXML
-    void searchMeetByNbGroup(ActionEvent event) {
-
-    }
+    private TableColumn<?, ?> SongDate;
 
     @FXML
-    void searchMeetByTitleGroup(ActionEvent event) {
+    private TableColumn<?, ?> SongDuration;
 
-    }
+    @FXML
+    private TableView<?> tableViewGroup;
+
+    @FXML
+    private TableColumn<?, ?> programGroup11;
+
+    @FXML
+    private TableColumn<?, ?> programSong11;
+
+    @FXML
+    private TableView<?> tableViewMeet;
+
+    @FXML
+    private TableColumn<?, ?> meetName;
+
+    @FXML
+    private TableColumn<?, ?> meetDateStart;
+
+    @FXML
+    private TableColumn<?, ?> meetDateStop;
+
+    @FXML
+    private TableColumn<?, ?> meetPeriodicity;
+
+    @FXML
+    private TableColumn<?, ?> meetNbCustomer;
+
+    @FXML
+    private TableColumn<?, ?> meetAddress;
+
+    @FXML
+    private TableColumn<?, ?> meetOrganizer;
+
+    @FXML
+    private TableView<?> tableViewUserBySpecialityMeet;
+
+    @FXML
+    private TableColumn<?, ?> userFirstname;
+
+    @FXML
+    private TableColumn<?, ?> userLastname;
+
+    @FXML
+    private TableColumn<?, ?> UserBirthday;
+
+    @FXML
+    private TableColumn<?, ?> userEmail;
+
+    @FXML
+    private TableColumn<?, ?> userPhone;
+
+    @FXML
+    private TableColumn<?, ?> userFax;
+
 
     @FXML
     void searchProgramByAddressGroup(ActionEvent event) {
