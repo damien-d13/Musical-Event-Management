@@ -57,4 +57,9 @@ public class Song {
     public void setDuration(Time duration) {
         this.duration = duration;
     }
+
+    @Override
+    public String toString() {
+        return  getTitle();
+    }
 }

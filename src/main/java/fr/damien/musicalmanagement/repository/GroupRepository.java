@@ -57,4 +57,26 @@ public class GroupRepository {
     }
 
 
+    public static ObservableList<Group> getGroupBySongObservableList(int songId) {
+        ObservableList<Group> groupSongObservableList = FXCollections.observableArrayList();
+
+        String SQL_GROUP_SONG = "CALL find_group_by_song(" + songId  +");";
+        try {
+            ResultSet rs = DatabaseConnection.getConnection().createStatement().executeQuery(SQL_GROUP_SONG);
+
+            while (rs.next()) {
+                Group group = new Group(rs.getInt("group_id"), rs.getString("group_label"), rs.getString("group_characteristic"));
+//                System.out.println(group);
+                groupSongObservableList.add(group);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error in Group Repository");
+        }
+
+        return groupSongObservableList;
+    }
+
+
 }

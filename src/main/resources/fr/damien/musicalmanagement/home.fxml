@@ -51,8 +51,8 @@
       <Button fx:id="searchProgamAddressGroup" layoutX="600.0" layoutY="723.0" mnemonicParsing="false" onAction="#searchProgramByAddressGroup" text="Search" />
       <TableView id="tableViewGroup" fx:id="tableViewGroup" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0" styleClass="tableView">
          <columns>
-            <TableColumn fx:id="programGroup11" prefWidth="234.0" text="Group " />
-            <TableColumn fx:id="programSong11" prefWidth="257.0" text="Characteristic" />
+            <TableColumn fx:id="songGroup" prefWidth="234.0" text="Group " />
+            <TableColumn fx:id="songCharacteristic" prefWidth="257.0" text="Characteristic" />
          </columns>
       </TableView>
       <TableView id="tableViewProgram" fx:id="tableViewProgram" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0" styleClass="tableView" visible="false">

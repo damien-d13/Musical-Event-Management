@@ -28,4 +28,9 @@ public class Speciality {
     public void setLabel(String label) {
         this.label = label;
     }
+
+    @Override
+    public String toString() {
+        return getLabel();
+    }
 }

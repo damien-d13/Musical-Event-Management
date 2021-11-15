@@ -1,13 +1,8 @@
 package fr.damien.musicalmanagement.controller;
 
 import fr.damien.musicalmanagement.MainApplication;
-import fr.damien.musicalmanagement.entity.Address;
-import fr.damien.musicalmanagement.entity.Group;
-import fr.damien.musicalmanagement.entity.Program;
-import fr.damien.musicalmanagement.repository.AddressRepository;
-import fr.damien.musicalmanagement.repository.GroupRepository;
-import fr.damien.musicalmanagement.repository.ProgramRepository;
-import fr.damien.musicalmanagement.repository.UserRepository;
+import fr.damien.musicalmanagement.entity.*;
+import fr.damien.musicalmanagement.repository.*;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,19 +31,19 @@ public class HomeController implements Initializable {
     private Button btnLogout;
 
     @FXML
-    private ComboBox<?> boxTitleGroup;
+    private ComboBox<Song> boxTitleGroup;
 
     @FXML
-    private ComboBox<?> boxTitle;
+    private ComboBox<Song> boxTitle;
 
     @FXML
-    private ComboBox<?> boxMeetGroup;
+    private ComboBox<Group> boxMeetGroup;
 
     @FXML
-    private ComboBox<?> boxSpeciality;
+    private ComboBox<Speciality> boxSpeciality;
 
     @FXML
-    private ComboBox<?> boxMeet;
+    private ComboBox<Meet> boxMeet;
 
     @FXML
     private ComboBox<?> boxCountry;
@@ -57,10 +52,10 @@ public class HomeController implements Initializable {
     private ComboBox<?> boxInstrument;
 
     @FXML
-    private ComboBox<?> boxAddress;
+    private ComboBox<Address> boxAddress;
 
     @FXML
-    private ComboBox<?> boxGroup;
+    private ComboBox<Group> boxGroup;
 
     @FXML
     private TextField boxTime;
@@ -90,25 +85,25 @@ public class HomeController implements Initializable {
     private Button searchProgamAddressGroup;
 
     @FXML
-    private TableView<?> tableViewProgram;
+    private TableView<Program> tableViewProgram;
 
     @FXML
-    private TableColumn<?, ?> programGroup;
+    private TableColumn<Program, Integer> programGroup;
 
     @FXML
-    private TableColumn<?, ?> programSong;
+    private TableColumn<Program, Integer> programSong;
 
     @FXML
-    private TableColumn<?, ?> programMeet;
+    private TableColumn<Program, Integer> programMeet;
 
     @FXML
-    private TableColumn<?, ?> programDate;
+    private TableColumn<Program, Date> programDate;
 
     @FXML
-    private TableColumn<?, ?> programTimeStart;
+    private TableColumn<Program, Time> programTimeStart;
 
     @FXML
-    private TableColumn<?, ?> programTimeEnd;
+    private TableColumn<Program, Time> programTimeEnd;
 
     @FXML
     private TableView<?> tableViewTitleSong;
@@ -123,37 +118,37 @@ public class HomeController implements Initializable {
     private TableColumn<?, ?> SongDuration;
 
     @FXML
-    private TableView<?> tableViewGroup;
+    private TableView<Group> tableViewGroup;
 
     @FXML
-    private TableColumn<?, ?> programGroup11;
+    private TableColumn<Group, String> songGroup;
 
     @FXML
-    private TableColumn<?, ?> programSong11;
+    private TableColumn<Group, String> songCharacteristic;
 
     @FXML
-    private TableView<?> tableViewMeet;
+    private TableView<Meet> tableViewMeet;
 
     @FXML
-    private TableColumn<?, ?> meetName;
+    private TableColumn<Meet, String> meetName;
 
     @FXML
-    private TableColumn<?, ?> meetDateStart;
+    private TableColumn<Meet, Date> meetDateStart;
 
     @FXML
-    private TableColumn<?, ?> meetDateStop;
+    private TableColumn<Meet, Date> meetDateStop;
 
     @FXML
-    private TableColumn<?, ?> meetPeriodicity;
+    private TableColumn<Meet, String> meetPeriodicity;
 
     @FXML
-    private TableColumn<?, ?> meetNbCustomer;
+    private TableColumn<Meet, Integer> meetNbCustomer;
 
     @FXML
-    private TableColumn<?, ?> meetAddress;
+    private TableColumn<Meet, Integer> meetAddress;
 
     @FXML
-    private TableColumn<?, ?> meetOrganizer;
+    private TableColumn<Meet, Integer> meetOrganizer;
 
     @FXML
     private TableView<?> tableViewUserBySpecialityMeet;
@@ -176,12 +171,51 @@ public class HomeController implements Initializable {
     @FXML
     private TableColumn<?, ?> userFax;
 
+    private int nbVisible;
+    private int songId;
+    private int addressId;
+    private int groupId;
+
+
+
+    @FXML
+    public void searchGroup(ActionEvent actionEvent) {
+
+        if (!boxTitleGroup.getSelectionModel().isEmpty()) {
+
+
+
+            nbVisible = 1;
+            hideTableView(nbVisible);
+
+
+            songId = boxTitleGroup.getSelectionModel().getSelectedItem().getId();
+            System.out.println(boxTitleGroup.getSelectionModel().getSelectedItem().getId());
+
+
+            System.out.println(GroupRepository.getGroupBySongObservableList(songId));
+
+
+
+            ObservableList<Group> list = GroupRepository.getGroupBySongObservableList(songId);
+
+
+            songGroup.setCellValueFactory(new PropertyValueFactory<Group, String>("label"));
+            songCharacteristic.setCellValueFactory(new PropertyValueFactory<Group, String>("characteristic"));
+
+
+            tableViewGroup.setItems(list);
+
+
+        }
+
+    }
 
     @FXML
     void searchProgramByAddressGroup(ActionEvent event) {
 
-        int addressId;
-        int groupId;
+        nbVisible = 2;
+        hideTableView(nbVisible);
 
 
 
@@ -211,11 +245,47 @@ public class HomeController implements Initializable {
 
         }
 
+    }
+
+    @FXML
+    public void searchMeetByTitleGroup(ActionEvent actionEvent) {
+
+        if (!boxTitle.getSelectionModel().isEmpty() && !boxMeetGroup.getSelectionModel().isEmpty()) {
 
 
 
+            nbVisible = 4;
+            hideTableView(nbVisible);
 
 
+            songId = boxTitle.getSelectionModel().getSelectedItem().getId();
+            System.out.println(songId);
+            System.out.println("TEST 1");
+
+            groupId = boxMeetGroup.getSelectionModel().getSelectedItem().getId();
+
+            System.out.println(MeetRepository.getMeetBySongGroupObservableList(groupId,songId));
+
+
+
+            ObservableList<Meet> list = MeetRepository.getMeetBySongGroupObservableList(groupId, songId);
+
+
+            meetName.setCellValueFactory(new PropertyValueFactory<Meet, String>("Label"));
+            meetDateStart.setCellValueFactory(new PropertyValueFactory<Meet, Date>("dateStart"));
+            meetDateStop.setCellValueFactory(new PropertyValueFactory<Meet, Date>("dateStop"));
+            meetPeriodicity.setCellValueFactory(new PropertyValueFactory<Meet, String>("periodicity"));
+            meetNbCustomer.setCellValueFactory(new PropertyValueFactory<Meet, Integer>("nbCustomerExpected"));
+            meetAddress.setCellValueFactory(new PropertyValueFactory<Meet, Integer>("addressId"));
+            meetOrganizer.setCellValueFactory(new PropertyValueFactory<Meet, Integer>("userId"));
+
+            tableViewMeet.setItems(list);
+
+        }
+
+    }
+    @FXML
+    void searchUserBySpecMeet(ActionEvent event) {
 
     }
 
@@ -224,11 +294,16 @@ public class HomeController implements Initializable {
 
     }
 
-    @FXML
-    void searchUserBySpecMeet(ActionEvent event) {
 
+
+
+
+
+    public void searchMeetByNbGroup(ActionEvent actionEvent) {
     }
 
+    public void searchMeetByInstrument(ActionEvent actionEvent) {
+    }
 
     @FXML
     void logoutConnection(ActionEvent event) throws IOException {
@@ -268,6 +343,16 @@ public class HomeController implements Initializable {
     public void showAllGroup() {
 //        boxGroup.getItems().addAll(GroupRepository.getGroupList());
         boxGroup.setItems(GroupRepository.getGroupObservableList());
+        boxMeetGroup.setItems(GroupRepository.getGroupObservableList());
+    }
+
+    public void showAllTitle() {
+        boxTitleGroup.setItems(SongRepository.getSongObservableList());
+        boxTitle.setItems(SongRepository.getSongObservableList());
+    }
+
+    public void showAllSpeciality() {
+        boxSpeciality.setItems(SpecialityRepository.getAllSpecialityObservableList());
     }
 
     public void showProgramByGroupAddress() {
@@ -276,12 +361,54 @@ public class HomeController implements Initializable {
 
     }
 
+    public void showAllMeet() {
+        boxMeet.setItems(MeetRepository.getAllMeetObservableList());
+    }
+
+
+    public void hideTableView(int nbVisible) {
+
+        tableViewGroup.setVisible(false);
+        tableViewProgram.setVisible(false);
+        tableViewTitleSong.setVisible(false);
+        tableViewMeet.setVisible(false);
+        tableViewUserBySpecialityMeet.setVisible(false);
+
+
+        switch (nbVisible) {
+            case 1:
+                tableViewGroup.setVisible(true);
+            break;
+            case 2:
+                tableViewProgram.setVisible(true);
+            break;
+            case 3:
+                tableViewTitleSong.setVisible(true);
+            break;
+            case 4:
+                tableViewMeet.setVisible(true);
+                break;
+            case 5:
+                tableViewUserBySpecialityMeet.setVisible(true);
+            break;
+
+
+        }
+
+
+    }
+
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         showAllAddress();
         showAllGroup();
+        showAllTitle();
+        showAllSpeciality();
+        showAllMeet();
 
     }
-
 }

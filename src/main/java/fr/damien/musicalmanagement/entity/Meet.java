@@ -16,6 +16,11 @@ public class Meet {
     public Meet() {
     }
 
+    public Meet(int id, String label) {
+        this.id = id;
+        this.label = label;
+    }
+
     public Meet(String label, Date dateStart, Date dateStop, String periodicity, int nbCustomerExpected, int addressId, int userId) {
         this.label = label;
         this.dateStart = dateStart;
@@ -99,5 +104,10 @@ public class Meet {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return getLabel();
     }
 }

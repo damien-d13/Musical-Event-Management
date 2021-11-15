@@ -179,3 +179,16 @@ BEGIN
     WHERE program.group_id = groupid AND ta.address_id = address;
 END //
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE find_meet_by_song_group
+(IN songid integer, groupid integer)
+BEGIN
+    SELECT *
+    FROM t_meet
+            INNER JOIN program p on t_meet.meet_id = p.meet_id
+            INNER JOIN t_group tg on p.group_id = tg.group_id
+            INNER JOIN t_song ts on p.song_id = ts.song_id
+    WHERE p.group_id = groupid AND p.song_id = songid;
+END //
+DELIMITER ;
