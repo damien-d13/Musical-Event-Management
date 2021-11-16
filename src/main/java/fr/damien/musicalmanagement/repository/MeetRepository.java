@@ -40,7 +40,7 @@ public class MeetRepository {
             ResultSet rs = DatabaseConnection.getConnection().createStatement().executeQuery(SQL_MEET_BY_NB_GROUP);
 
             while (rs.next()) {
-                Meet meet = new Meet(rs.getInt("meet_id"), rs.getString("meet_label"), rs.getDate("meet_date_start"), rs.getDate("meet_date_stop"), rs.getString("meet_periodicity"), rs.getInt("meet_nb_customer"), rs.getInt("address_id"), rs.getInt("user_id") );
+                Meet meet = new Meet(rs.getInt("meet_id"), rs.getString("meet_label"), rs.getDate("meet_date_start"), rs.getDate("meet_date_stop"), rs.getString("meet_periodicity"), rs.getInt("meet_nb_customers_expected"), rs.getInt("address_id"), rs.getInt("user_id") );
                 System.out.println(meet);
                 meetNbGObservableList.add(meet);
             }
@@ -62,7 +62,7 @@ public class MeetRepository {
             ResultSet rs = DatabaseConnection.getConnection().createStatement().executeQuery(SQL_MEET_BY_INSTRUMENT);
 
             while (rs.next()) {
-                Meet meet = new Meet(rs.getInt("meet_id"), rs.getString("meet_label"), rs.getDate("meet_date_start"), rs.getDate("meet_date_stop"), rs.getString("meet_periodicity"), rs.getInt("meet_nb_customer"), rs.getInt("address_id"), rs.getInt("user_id") );
+                Meet meet = new Meet(rs.getInt("meet_id"), rs.getString("meet_label"), rs.getDate("meet_date_start"), rs.getDate("meet_date_stop"), rs.getString("meet_periodicity"), rs.getInt("meet_nb_customers_expected"), rs.getInt("address_id"), rs.getInt("user_id") );
                 System.out.println(meet);
                 meetInstrumentObservableList.add(meet);
             }

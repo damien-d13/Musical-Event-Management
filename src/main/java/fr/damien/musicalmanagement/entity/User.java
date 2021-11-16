@@ -18,6 +18,15 @@ public class User {
     public User() {
     }
 
+    public User( String firstname, String lastname, Date birthDay, String email, String phone, String fax) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.birthDay = birthDay;
+        this.email = email;
+        this.phone = phone;
+        this.fax = fax;
+    }
+
     public User(String firstname, String lastname, Date birthDay, String email, String phone, String fax, int role_id, int civility_id, int responsibility_id) {
         this.firstname = firstname;
         this.lastname = lastname;

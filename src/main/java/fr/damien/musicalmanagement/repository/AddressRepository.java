@@ -53,6 +53,26 @@ public class AddressRepository {
         return addressObservableList;
     }
 
+    public static ObservableList<Address> getCountryObservableList() {
+        ObservableList<Address> addressObservableList = FXCollections.observableArrayList();
+
+        String SQL_ADDRESS = "CALL all_address();";
+        try {
+            ResultSet rs = DatabaseConnection.getConnection().createStatement().executeQuery(SQL_ADDRESS);
+
+            while (rs.next()) {
+                Address address = new Address(rs.getInt("address_id"), rs.getString("address_country"));
+                System.out.println(address);
+                addressObservableList.add(address);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error in Address Repository");
+        }
+
+        return addressObservableList;
+    }
 
 
 }

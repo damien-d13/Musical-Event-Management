@@ -109,7 +109,7 @@ DELIMITER //
 CREATE PROCEDURE find_user_with_meet_spe
 (IN spe CHAR(20), meet CHAR(20))
 BEGIN
-    SELECT p.user_id
+    SELECT *
     from t_user
              INNER join participates p on t_user.user_id = p.user_id
              INNER JOIN t_group tg on p.group_id = tg.group_id
@@ -126,7 +126,7 @@ DELIMITER //
 CREATE PROCEDURE find_song_with_time_location
 (IN address CHAR(20), timemin CHAR(20))
 BEGIN
-    SELECT song_id
+    SELECT *
     from t_song s
             INNER JOIN program p on s.song_id = p.song_id
             INNER JOIN t_meet tm on p.meet_id = tm.meet_id
@@ -141,7 +141,7 @@ DELIMITER //
 CREATE PROCEDURE find_meet_by_nb_group
 (IN nbgroup CHAR(20))
 BEGIN
-    SELECT t_meet.meet_label, GROUP_CONCAT(tg.group_label)
+    SELECT t_meet.*, GROUP_CONCAT(tg.group_label)
     FROM t_meet
              INNER JOIN  program p on t_meet.meet_id = p.meet_id
              INNER JOIN t_group tg on p.group_id = tg.group_id

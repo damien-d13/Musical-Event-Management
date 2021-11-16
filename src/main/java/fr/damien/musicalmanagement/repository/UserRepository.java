@@ -1,6 +1,10 @@
 package fr.damien.musicalmanagement.repository;
 
+import fr.damien.musicalmanagement.entity.Meet;
+import fr.damien.musicalmanagement.entity.User;
 import fr.damien.musicalmanagement.utils.DatabaseConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -44,6 +48,28 @@ public class UserRepository {
             System.out.println("Error in User Repository (findUserInfo)");
         }
         return rs;
+    }
+
+    public static ObservableList<User> getUserBySpecMeetObservableList(int specialityId, int meetId) {
+        ObservableList<User> userBySpecMeetObservableList = FXCollections.observableArrayList();
+
+
+        String SQL_USER_SPEC_MEET = "CALL find_user_with_meet_spe(" + meetId  + "," + specialityId + ");";
+        try {
+            ResultSet rs = DatabaseConnection.getConnection().createStatement().executeQuery(SQL_USER_SPEC_MEET);
+
+            while (rs.next()) {
+                User user = new User(rs.getString("user_firstname"), rs.getString("user_lastname"), rs.getDate("user_birth_day"), rs.getString("user_email"), rs.getString("user_phone"), rs.getString("user_fax"));
+                System.out.println(user);
+                userBySpecMeetObservableList.add(user);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error in User Repository");
+        }
+
+        return userBySpecMeetObservableList;
     }
 
 }

@@ -67,9 +67,9 @@
       </TableView>
       <TableView id="tableViewTitleSong" fx:id="tableViewTitleSong" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0" styleClass="tableView" visible="false">
          <columns>
-            <TableColumn fx:id="TitleSong" prefWidth="148.0" text="Title song" />
-            <TableColumn fx:id="SongDate" prefWidth="169.0" text="Song date" />
-            <TableColumn fx:id="SongDuration" prefWidth="174.0" text="Song duration" />
+            <TableColumn fx:id="titleSong" prefWidth="148.0" text="Title song" />
+            <TableColumn fx:id="songDate" prefWidth="169.0" text="Song date" />
+            <TableColumn fx:id="songDuration" prefWidth="174.0" text="Song duration" />
          </columns>
       </TableView>
       <TableView id="tableViewMeet" fx:id="tableViewMeet" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0" styleClass="tableView" visible="false">
@@ -87,7 +87,7 @@
          <columns>
             <TableColumn fx:id="userFirstname" prefWidth="77.0" text="Firstname" />
             <TableColumn fx:id="userLastname" prefWidth="79.0" text="Lastname" />
-            <TableColumn fx:id="UserBirthday" prefWidth="75.0" text="Birthday" />
+            <TableColumn fx:id="userBirthday" prefWidth="75.0" text="Birthday" />
             <TableColumn fx:id="userEmail" prefWidth="72.0" text="Email" />
             <TableColumn fx:id="userPhone" prefWidth="89.0" text="Phone" />
             <TableColumn fx:id="userFax" prefWidth="116.0" text="Fax" />

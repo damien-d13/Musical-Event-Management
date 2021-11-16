@@ -13,12 +13,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.converter.DateTimeStringConverter;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -46,10 +50,10 @@ public class HomeController implements Initializable {
     private ComboBox<Meet> boxMeet;
 
     @FXML
-    private ComboBox<?> boxCountry;
+    private ComboBox<Address> boxCountry;
 
     @FXML
-    private ComboBox<?> boxInstrument;
+    private ComboBox<Instrument> boxInstrument;
 
     @FXML
     private ComboBox<Address> boxAddress;
@@ -106,16 +110,16 @@ public class HomeController implements Initializable {
     private TableColumn<Program, Time> programTimeEnd;
 
     @FXML
-    private TableView<?> tableViewTitleSong;
+    private TableView<Song> tableViewTitleSong;
 
     @FXML
-    private TableColumn<?, ?> TitleSong;
+    private TableColumn<Song, String> titleSong;
 
     @FXML
-    private TableColumn<?, ?> SongDate;
+    private TableColumn<Song, Date> songDate;
 
     @FXML
-    private TableColumn<?, ?> SongDuration;
+    private TableColumn<Song, Time> songDuration;
 
     @FXML
     private TableView<Group> tableViewGroup;
@@ -151,30 +155,32 @@ public class HomeController implements Initializable {
     private TableColumn<Meet, Integer> meetOrganizer;
 
     @FXML
-    private TableView<?> tableViewUserBySpecialityMeet;
+    private TableView<User> tableViewUserBySpecialityMeet;
 
     @FXML
-    private TableColumn<?, ?> userFirstname;
+    private TableColumn<User, String> userFirstname;
 
     @FXML
-    private TableColumn<?, ?> userLastname;
+    private TableColumn<User, String> userLastname;
 
     @FXML
-    private TableColumn<?, ?> UserBirthday;
+    private TableColumn<User, Date> userBirthday;
 
     @FXML
-    private TableColumn<?, ?> userEmail;
+    private TableColumn<User, String> userEmail;
 
     @FXML
-    private TableColumn<?, ?> userPhone;
+    private TableColumn<User, String> userPhone;
 
     @FXML
-    private TableColumn<?, ?> userFax;
+    private TableColumn<User, String> userFax;
 
     private int nbVisible;
     private int songId;
     private int addressId;
     private int groupId;
+    private int specialityId;
+    private int meetId;
 
 
 
@@ -287,11 +293,74 @@ public class HomeController implements Initializable {
     @FXML
     void searchUserBySpecMeet(ActionEvent event) {
 
+        if (!boxSpeciality.getSelectionModel().isEmpty() && !boxMeet.getSelectionModel().isEmpty()) {
+
+
+
+            nbVisible = 5;
+            hideTableView(nbVisible);
+
+
+            specialityId = boxSpeciality.getSelectionModel().getSelectedItem().getId();
+            System.out.println(specialityId);
+
+
+            meetId = boxMeet.getSelectionModel().getSelectedItem().getId();
+            System.out.println(meetId);
+
+            System.out.println(MeetRepository.getMeetBySongGroupObservableList(groupId,songId));
+
+
+
+            ObservableList<User> list = UserRepository.getUserBySpecMeetObservableList(specialityId, meetId);
+
+
+            userFirstname.setCellValueFactory(new PropertyValueFactory<User, String>("firstname"));
+            userLastname.setCellValueFactory(new PropertyValueFactory<User, String>("lastname"));
+            userBirthday.setCellValueFactory(new PropertyValueFactory<User, Date>("birthday"));
+            userEmail.setCellValueFactory(new PropertyValueFactory<User, String>("email"));
+            userPhone.setCellValueFactory(new PropertyValueFactory<User, String>("phone"));
+            userFax.setCellValueFactory(new PropertyValueFactory<User, String>("fax"));
+
+
+            tableViewUserBySpecialityMeet.setItems(list);
+
+        }
     }
 
     @FXML
     void searchTitleByDurationCountry(ActionEvent event) {
 
+        if (!boxTime.getText().trim().isEmpty() && !boxCountry.getSelectionModel().isEmpty()) {
+            int countryId;
+            String timeValue;
+            nbVisible = 3;
+            hideTableView(nbVisible);
+
+            timeValue = boxTime.getText();
+//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:MM:SS");
+            LocalTime timeMini = LocalTime.parse( timeValue) ;
+            System.out.println(timeMini);
+
+            countryId = boxCountry.getSelectionModel().getSelectedItem().getId();
+            System.out.println(countryId);
+
+            System.out.println(SongRepository.getSongByAddressTimeObservableList(countryId, timeMini));
+
+
+
+            ObservableList<Song> list = SongRepository.getSongByAddressTimeObservableList(countryId, timeMini);
+
+
+            titleSong.setCellValueFactory(new PropertyValueFactory<Song, String>("title"));
+            songDate.setCellValueFactory(new PropertyValueFactory<Song, Date>("date"));
+            songDuration.setCellValueFactory(new PropertyValueFactory<Song, Time>("duration"));
+
+
+
+            tableViewTitleSong.setItems(list);
+
+        }
     }
 
 
@@ -300,6 +369,40 @@ public class HomeController implements Initializable {
 
 
     public void searchMeetByNbGroup(ActionEvent actionEvent) {
+
+
+        if (!boxNbGroup.getText().trim().isEmpty()) {
+
+
+
+            nbVisible = 4;
+            hideTableView(nbVisible);
+
+
+            int nbGroup = Integer.parseInt(boxNbGroup.getText());
+            System.out.println(nbGroup);
+            System.out.println("TEST 2");
+
+
+            System.out.println(MeetRepository.getMeetByNbGroupObservableList(nbGroup));
+
+
+
+            ObservableList<Meet> list = MeetRepository.getMeetByNbGroupObservableList(nbGroup);
+
+
+            meetName.setCellValueFactory(new PropertyValueFactory<Meet, String>("Label"));
+            meetDateStart.setCellValueFactory(new PropertyValueFactory<Meet, Date>("dateStart"));
+            meetDateStop.setCellValueFactory(new PropertyValueFactory<Meet, Date>("dateStop"));
+            meetPeriodicity.setCellValueFactory(new PropertyValueFactory<Meet, String>("periodicity"));
+            meetNbCustomer.setCellValueFactory(new PropertyValueFactory<Meet, Integer>("nbCustomerExpected"));
+            meetAddress.setCellValueFactory(new PropertyValueFactory<Meet, Integer>("addressId"));
+            meetOrganizer.setCellValueFactory(new PropertyValueFactory<Meet, Integer>("userId"));
+
+            tableViewMeet.setItems(list);
+
+        }
+
     }
 
     public void searchMeetByInstrument(ActionEvent actionEvent) {
@@ -351,8 +454,20 @@ public class HomeController implements Initializable {
         boxTitle.setItems(SongRepository.getSongObservableList());
     }
 
+    public void showAllMeet() {
+        boxMeet.setItems(MeetRepository.getAllMeetObservableList());
+    }
+
     public void showAllSpeciality() {
         boxSpeciality.setItems(SpecialityRepository.getAllSpecialityObservableList());
+    }
+
+    public void showAllCountry() {
+        boxCountry.setItems(AddressRepository.getCountryObservableList());
+    }
+
+    public void showAllInstrument() {
+        boxInstrument.setItems(InstrumentRepository.allInstrumentObservableList());
     }
 
     public void showProgramByGroupAddress() {
@@ -361,8 +476,10 @@ public class HomeController implements Initializable {
 
     }
 
-    public void showAllMeet() {
-        boxMeet.setItems(MeetRepository.getAllMeetObservableList());
+
+    public void formatTextTime() throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        boxTime.setTextFormatter(new TextFormatter<>(new DateTimeStringConverter(format), format.parse("00:00:00")));
     }
 
 
@@ -409,6 +526,14 @@ public class HomeController implements Initializable {
         showAllTitle();
         showAllSpeciality();
         showAllMeet();
+        showAllCountry();
+        try {
+            formatTextTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        showAllInstrument();
 
     }
 }
