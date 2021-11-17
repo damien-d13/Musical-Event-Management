@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.damien.musicalmanagement.controller.CrudController">
+   <children>
+      <Label layoutX="458.0" layoutY="28.0" text="MUSICAL EVENT MANAGER" textFill="WHITE">
+         <font>
+            <Font name="Algerian" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="34.0" text="Welcome" textFill="WHITE" />
+      <Label fx:id="userName" layoutX="108.0" layoutY="34.0" text="Anon" textFill="WHITE" />
+      <TabPane layoutX="35.0" layoutY="107.0" prefHeight="651.0" prefWidth="1125.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <Tab text="User">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableViewUser" layoutX="429.0" layoutY="7.0" prefHeight="607.0" prefWidth="689.0">
+                          <columns>
+                            <TableColumn fx:id="tabFirstname" prefWidth="75.0" text="Firstname" />
+                            <TableColumn fx:id="tabLastname" prefWidth="75.0" text="Lastname" />
+                              <TableColumn fx:id="tabBirthday" prefWidth="88.0" text="Birthday" />
+                              <TableColumn fx:id="tabEmail" prefWidth="107.0" text="Email" />
+                              <TableColumn fx:id="tabPhone" prefWidth="76.0" text="Phone" />
+                              <TableColumn fx:id="tabFax" prefWidth="78.0" text="Fax" />
+                              <TableColumn fx:id="tabRole" prefWidth="56.0" text="Role" />
+                              <TableColumn fx:id="tabCivility" prefWidth="51.0" text="Civility" />
+                              <TableColumn fx:id="tabResponsibility" prefWidth="82.0" text="responsibility" />
+                          </columns>
+                        </TableView>
+                        <TextField fx:id="textFirstname" layoutX="137.0" layoutY="52.0" />
+                        <TextField fx:id="textLastname" layoutX="137.0" layoutY="119.0" />
+                        <TextField fx:id="textBirthday" layoutX="137.0" layoutY="185.0" />
+                        <TextField fx:id="textEmail" layoutX="135.0" layoutY="250.0" />
+                        <TextField fx:id="textPhone" layoutX="135.0" layoutY="311.0" />
+                        <TextField fx:id="textFax" layoutX="137.0" layoutY="375.0" />
+                        <ComboBox fx:id="boxRole" layoutX="136.0" layoutY="439.0" prefWidth="150.0" />
+                        <ComboBox fx:id="boxCivility" layoutX="135.0" layoutY="500.0" prefWidth="150.0" />
+                        <ComboBox fx:id="boxResponsibility" layoutX="136.0" layoutY="562.0" prefWidth="150.0" />
+                        <Label layoutX="40.0" layoutY="56.0" text="Firstname" textFill="WHITE" />
+                        <Label layoutX="40.0" layoutY="123.0" text="Lastname" textFill="WHITE" />
+                        <Label layoutX="40.0" layoutY="189.0" text="Birthday" textFill="WHITE" />
+                        <Label layoutX="40.0" layoutY="254.0" text="Email" textFill="WHITE" />
+                        <Label layoutX="40.0" layoutY="315.0" text="Phone" textFill="WHITE" />
+                        <Label layoutX="40.0" layoutY="379.0" text="Fax" textFill="WHITE" />
+                        <Label layoutX="40.0" layoutY="443.0" text="Role" textFill="WHITE" />
+                        <Label layoutX="40.0" layoutY="504.0" text="Civility" textFill="WHITE" />
+                        <Label layoutX="40.0" layoutY="566.0" text="Responsibility" textFill="WHITE" />
+                        <Button fx:id="btnAdd" layoutX="342.0" layoutY="164.0" mnemonicParsing="false" onAction="#addUser" text="Add" />
+                        <Button fx:id="btnUpdate" layoutX="342.0" layoutY="299.0" mnemonicParsing="false" onAction="#updateUser" text="Update" />
+                        <Button fx:id="btnDelete" layoutX="342.0" layoutY="439.0" mnemonicParsing="false" onAction="#deleteUser" text="Delete" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+          <Tab text="Role">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+          <Tab text="Civility">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+            <Tab text="Creates">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Group">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Instrument">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Localise">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Meet">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Participates">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Address">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Practice">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Program">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Responsibility">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Categorize">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Song">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Speciality">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Specialized">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Type">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

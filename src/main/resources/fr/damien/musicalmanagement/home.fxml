@@ -17,7 +17,7 @@
          </font>
       </Label>
       <Label layoutX="25.0" layoutY="34.0" text="Welcome " textFill="WHITE" />
-      <Label fx:id="UserName" layoutX="89.0" layoutY="34.0" text="Anon" />
+      <Label fx:id="userName" layoutX="89.0" layoutY="34.0" text="Anon" />
       <Button fx:id="btnLogout" layoutX="1132.0" layoutY="17.0" mnemonicParsing="false" onAction="#logoutConnection" text="Logout" />
       <Label layoutX="27.0" layoutY="167.0" text="Find group WHERE title =" textFill="WHITE" />
       <ComboBox fx:id="boxTitleGroup" layoutX="174.0" layoutY="163.0" prefWidth="150.0" promptText="Title" />
@@ -48,7 +48,7 @@
       <Label layoutX="367.0" layoutY="727.0" text="and group =" textFill="WHITE" />
       <Button fx:id="searchMeetNbGroup" layoutX="390.0" layoutY="537.0" mnemonicParsing="false" onAction="#searchMeetByNbGroup" text="Search" />
       <Button fx:id="searchMeetInstru" layoutX="390.0" layoutY="625.0" mnemonicParsing="false" onAction="#searchMeetByInstrument" text="Search" />
-      <Button fx:id="searchProgamAddressGroup" layoutX="600.0" layoutY="723.0" mnemonicParsing="false" onAction="#searchProgramByAddressGroup" text="Search" />
+      <Button fx:id="searchProgramAddressGroup" layoutX="600.0" layoutY="723.0" mnemonicParsing="false" onAction="#searchProgramByAddressGroup" text="Search" />
       <TableView id="tableViewGroup" fx:id="tableViewGroup" layoutX="686.0" layoutY="103.0" prefHeight="674.0" prefWidth="492.0" styleClass="tableView">
          <columns>
             <TableColumn fx:id="songGroup" prefWidth="234.0" text="Group " />
@@ -93,5 +93,6 @@
             <TableColumn fx:id="userFax" prefWidth="116.0" text="Fax" />
          </columns>
       </TableView>
+      <Button fx:id="btnAdmin" layoutX="273.0" layoutY="30.0" mnemonicParsing="false" onAction="#openAdminPage" text="Admin" />
    </children>
 </Pane>

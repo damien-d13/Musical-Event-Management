@@ -192,3 +192,35 @@ BEGIN
     WHERE p.group_id = groupid AND p.song_id = songid;
 END //
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE all_user()
+BEGIN
+    SELECT *
+    FROM t_user;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE all_role()
+BEGIN
+    SELECT *
+    FROM t_role;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE all_civility()
+BEGIN
+    SELECT *
+    FROM t_civility;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE all_responsibility()
+BEGIN
+    SELECT *
+    FROM t_responsibility;
+END //
+DELIMITER ;

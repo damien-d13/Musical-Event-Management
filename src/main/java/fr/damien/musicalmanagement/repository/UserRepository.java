@@ -72,4 +72,27 @@ public class UserRepository {
         return userBySpecMeetObservableList;
     }
 
+
+    public static ObservableList<User> getAllUserObservableList() {
+        ObservableList<User> allUserObservableList = FXCollections.observableArrayList();
+
+
+        String SQL_USER = "CALL all_user();";
+        try {
+            ResultSet rs = DatabaseConnection.getConnection().createStatement().executeQuery(SQL_USER);
+
+            while (rs.next()) {
+                User user = new User(rs.getString("user_firstname"), rs.getString("user_lastname"), rs.getDate("user_birth_day"), rs.getString("user_email"), rs.getString("user_phone"), rs.getString("user_fax"), rs.getInt("role_id"), rs.getInt("civility_id"), rs.getInt("responsibility_id"));
+                System.out.println(user);
+                allUserObservableList.add(user);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error in User Repository");
+        }
+
+        return allUserObservableList;
+    }
+
 }

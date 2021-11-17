@@ -29,7 +29,7 @@ import java.util.ResourceBundle;
 public class HomeController implements Initializable {
 
     @FXML
-    private Label UserName;
+    private Label userName;
 
     @FXML
     private Button btnLogout;
@@ -86,7 +86,10 @@ public class HomeController implements Initializable {
     private Button searchMeetInstru;
 
     @FXML
-    private Button searchProgamAddressGroup;
+    private Button searchProgramAddressGroup;
+
+    @FXML
+    private Button btnAdmin;
 
     @FXML
     private TableView<Program> tableViewProgram;
@@ -317,7 +320,7 @@ public class HomeController implements Initializable {
 
             userFirstname.setCellValueFactory(new PropertyValueFactory<User, String>("firstname"));
             userLastname.setCellValueFactory(new PropertyValueFactory<User, String>("lastname"));
-            userBirthday.setCellValueFactory(new PropertyValueFactory<User, Date>("birthday"));
+            userBirthday.setCellValueFactory(new PropertyValueFactory<User, Date>("birthDay"));
             userEmail.setCellValueFactory(new PropertyValueFactory<User, String>("email"));
             userPhone.setCellValueFactory(new PropertyValueFactory<User, String>("phone"));
             userFax.setCellValueFactory(new PropertyValueFactory<User, String>("fax"));
@@ -440,6 +443,26 @@ public class HomeController implements Initializable {
 
     }
 
+
+    @FXML
+    void openAdminPage(ActionEvent event) throws IOException, SQLException {
+
+
+        //Show main interface
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("crud.fxml"));
+        Parent root = fxmlLoader.load();
+
+        CrudController crudController = fxmlLoader.getController();
+
+        crudController.showUser(userName.getText());
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("CRUD");
+        stage.show();
+
+    }
+
     @FXML
     void logoutConnection(ActionEvent event) throws IOException {
 
@@ -463,7 +486,7 @@ public class HomeController implements Initializable {
         ResultSet rs = UserRepository.findUserInfo(userEmail);
 
         if (rs.next()) {
-            UserName.setText(rs.getString("user_firstname"));
+            userName.setText(rs.getString("user_firstname"));
         }
 
     }
