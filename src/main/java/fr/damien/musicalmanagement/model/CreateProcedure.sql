@@ -155,7 +155,7 @@ DELIMITER //
 CREATE PROCEDURE find_meet_by_instrument
 (IN instrument CHAR(20))
 BEGIN
-    SELECT t_meet.meet_label
+    SELECT t_meet.*
     FROM t_meet
              INNER JOIN  program p on t_meet.meet_id = p.meet_id
              INNER JOIN t_group tg on p.group_id = tg.group_id

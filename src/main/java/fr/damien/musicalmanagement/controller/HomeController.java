@@ -406,6 +406,38 @@ public class HomeController implements Initializable {
     }
 
     public void searchMeetByInstrument(ActionEvent actionEvent) {
+        if (!boxInstrument.getSelectionModel().isEmpty()) {
+
+
+
+            nbVisible = 4;
+            hideTableView(nbVisible);
+
+
+            int instrumentId = boxInstrument.getSelectionModel().getSelectedItem().getId();
+            System.out.println(instrumentId);
+            System.out.println("TEST 2");
+
+
+            System.out.println(MeetRepository.getMeetByInstrumentObservableList(instrumentId));
+
+
+
+            ObservableList<Meet> list = MeetRepository.getMeetByInstrumentObservableList(instrumentId);
+
+
+            meetName.setCellValueFactory(new PropertyValueFactory<Meet, String>("Label"));
+            meetDateStart.setCellValueFactory(new PropertyValueFactory<Meet, Date>("dateStart"));
+            meetDateStop.setCellValueFactory(new PropertyValueFactory<Meet, Date>("dateStop"));
+            meetPeriodicity.setCellValueFactory(new PropertyValueFactory<Meet, String>("periodicity"));
+            meetNbCustomer.setCellValueFactory(new PropertyValueFactory<Meet, Integer>("nbCustomerExpected"));
+            meetAddress.setCellValueFactory(new PropertyValueFactory<Meet, Integer>("addressId"));
+            meetOrganizer.setCellValueFactory(new PropertyValueFactory<Meet, Integer>("userId"));
+
+            tableViewMeet.setItems(list);
+
+        }
+
     }
 
     @FXML
@@ -470,11 +502,7 @@ public class HomeController implements Initializable {
         boxInstrument.setItems(InstrumentRepository.allInstrumentObservableList());
     }
 
-    public void showProgramByGroupAddress() {
 
-
-
-    }
 
 
     public void formatTextTime() throws ParseException {
