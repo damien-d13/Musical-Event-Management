@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 public class CivilityRepository {
 
     public static ObservableList<Civility> allCivilityObservableList() {
-        ObservableList<Civility> allcivilityObservableList = FXCollections.observableArrayList();
+        ObservableList<Civility> allCivilityObservableList = FXCollections.observableArrayList();
 
 
         String SQL_CIVILITY = "CALL all_civility();";
@@ -20,8 +20,8 @@ public class CivilityRepository {
 
             while (rs.next()) {
                 Civility civility = new Civility(rs.getInt("civility_id"), rs.getString("civility_label") );
-                System.out.println(civility);
-                allcivilityObservableList.add(civility);
+//                System.out.println(civility);
+                allCivilityObservableList.add(civility);
             }
 
         } catch (Exception e) {
@@ -29,6 +29,6 @@ public class CivilityRepository {
             System.out.println("Error in Civility Repository");
         }
 
-        return allcivilityObservableList;
+        return allCivilityObservableList;
     }
 }

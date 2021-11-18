@@ -20,7 +20,7 @@ public class ResponsibilityRepository {
 
             while (rs.next()) {
                 Responsibility responsibility = new Responsibility(rs.getInt("responsibility_id"), rs.getString("responsibility_label") );
-                System.out.println(responsibility);
+//                System.out.println(responsibility);
                 allResponsibilityObservableList.add(responsibility);
             }
 

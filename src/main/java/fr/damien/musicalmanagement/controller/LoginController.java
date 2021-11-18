@@ -51,33 +51,9 @@ public class LoginController {
 
         while (rs.next()) {
 
-            if (!goodPassword){
-
-//                //hide login interface
-                btnConnection.getScene().getWindow().hide();
-
-                //Show main interface
-                FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("home.fxml"));
-                Parent root = fxmlLoader.load();
-
-                HomeController homeController = fxmlLoader.getController();
-
-                homeController.showUser(rs.getString("user_email"));
-
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.setTitle("Home");
-                stage.show();
-
-                break;
-            }
-
-//            if (emailUser.equals(rs.getString("user_email") ) && password.equals(rs.getString("user_password"))) {
+//            if (!goodPassword){
 //
-//
-//                goodPassword = true;
-//
-//                //hide login interface
+////                //hide login interface
 //                btnConnection.getScene().getWindow().hide();
 //
 //                //Show main interface
@@ -92,13 +68,38 @@ public class LoginController {
 //                stage.setScene(new Scene(root));
 //                stage.setTitle("Home");
 //                stage.show();
-//            break;
 //
+//                break;
 //            }
-//            else {
-//
-//
-//            }
+
+            if (emailUser.equals(rs.getString("user_email") ) && password.equals(rs.getString("user_password"))) {
+
+
+                goodPassword = true;
+
+                //hide login interface
+                btnConnection.getScene().getWindow().hide();
+
+                //Show main interface
+                FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("home.fxml"));
+                Parent root = fxmlLoader.load();
+
+                HomeController homeController = fxmlLoader.getController();
+
+                homeController.showUser(rs.getString("user_email"), rs.getInt("role_id"));
+                System.out.println(rs.getInt("role_id"));
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Home");
+                stage.show();
+            break;
+
+            }
+            else {
+
+
+            }
         }
         if (!goodPassword) {
             message.setContentText("Invalid Login Details");

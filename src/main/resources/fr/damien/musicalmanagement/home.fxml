@@ -17,7 +17,7 @@
          </font>
       </Label>
       <Label layoutX="25.0" layoutY="34.0" text="Welcome " textFill="WHITE" />
-      <Label fx:id="userName" layoutX="89.0" layoutY="34.0" text="Anon" />
+      <Label fx:id="userName" layoutX="89.0" layoutY="34.0" text="Anon" textFill="WHITE" />
       <Button fx:id="btnLogout" layoutX="1132.0" layoutY="17.0" mnemonicParsing="false" onAction="#logoutConnection" text="Logout" />
       <Label layoutX="27.0" layoutY="167.0" text="Find group WHERE title =" textFill="WHITE" />
       <ComboBox fx:id="boxTitleGroup" layoutX="174.0" layoutY="163.0" prefWidth="150.0" promptText="Title" />
@@ -93,6 +93,6 @@
             <TableColumn fx:id="userFax" prefWidth="116.0" text="Fax" />
          </columns>
       </TableView>
-      <Button fx:id="btnAdmin" layoutX="273.0" layoutY="30.0" mnemonicParsing="false" onAction="#openAdminPage" text="Admin" />
+      <Button fx:id="btnAdmin" layoutX="273.0" layoutY="30.0" mnemonicParsing="false" onAction="#openAdminPage" text="Admin" visible="false" />
    </children>
 </Pane>

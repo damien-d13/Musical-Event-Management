@@ -19,7 +19,7 @@ public class SpecialityRepository {
 
             while (rs.next()) {
                 Speciality speciality = new Speciality(rs.getInt("speciality_id"), rs.getString("speciality_label"));
-                System.out.println(speciality);
+//                System.out.println(speciality);
                 specialitiesObservableList.add(speciality);
             }
 

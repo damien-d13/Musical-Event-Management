@@ -19,7 +19,7 @@ public class MeetRepository {
 
             while (rs.next()) {
                 Meet meet = new Meet(rs.getInt("meet_id"), rs.getString("meet_label"), rs.getDate("meet_date_start"), rs.getDate("meet_date_stop"), rs.getString("meet_periodicity"), rs.getInt("meet_nb_customers_expected"), rs.getInt("address_id"), rs.getInt("user_id") );
-                System.out.println(meet);
+//                System.out.println(meet);
                 meetSGObservableList.add(meet);
             }
 
@@ -41,7 +41,7 @@ public class MeetRepository {
 
             while (rs.next()) {
                 Meet meet = new Meet(rs.getInt("meet_id"), rs.getString("meet_label"), rs.getDate("meet_date_start"), rs.getDate("meet_date_stop"), rs.getString("meet_periodicity"), rs.getInt("meet_nb_customers_expected"), rs.getInt("address_id"), rs.getInt("user_id") );
-                System.out.println(meet);
+//                System.out.println(meet);
                 meetNbGObservableList.add(meet);
             }
 
@@ -63,7 +63,7 @@ public class MeetRepository {
 
             while (rs.next()) {
                 Meet meet = new Meet(rs.getInt("meet_id"), rs.getString("meet_label"), rs.getDate("meet_date_start"), rs.getDate("meet_date_stop"), rs.getString("meet_periodicity"), rs.getInt("meet_nb_customers_expected"), rs.getInt("address_id"), rs.getInt("user_id") );
-                System.out.println(meet);
+//                System.out.println(meet);
                 meetInstrumentObservableList.add(meet);
             }
 
@@ -85,7 +85,7 @@ public class MeetRepository {
 
             while (rs.next()) {
                 Meet meet = new Meet(rs.getInt("meet_id"), rs.getString("meet_label"));
-                System.out.println(meet);
+//                System.out.println(meet);
                 meetAllObservableList.add(meet);
             }
 

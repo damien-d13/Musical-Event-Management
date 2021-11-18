@@ -1,5 +1,6 @@
 package fr.damien.musicalmanagement.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class User {
@@ -11,6 +12,7 @@ public class User {
     private String email;
     private String phone;
     private String fax;
+    private String password;
     private int role_id;
     private int civility_id;
     private int responsibility_id;
@@ -39,6 +41,19 @@ public class User {
         this.responsibility_id = responsibility_id;
     }
 
+
+    public User(String firstname, String lastname, String password, Date birthday, String email, String phone, String fax, int role, int civility, int responsibility) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.birthDay = birthday;
+        this.email = email;
+        this.phone = phone;
+        this.fax = fax;
+        this.password = password;
+        this.role_id = role;
+        this.civility_id = civility;
+        this.responsibility_id = responsibility;
+    }
     public User(int id, String firstname, String lastname, Date birthDay, String email, String phone, String fax, int role_id, int civility_id, int responsibility_id) {
         this.id = id;
         this.firstname = firstname;
@@ -51,6 +66,23 @@ public class User {
         this.civility_id = civility_id;
         this.responsibility_id = responsibility_id;
     }
+
+
+
+    public User(int id, String firstname, String lastname, String password, Date birthDay, String email, String phone, String fax, int role, int civility, int responsibility) {
+    this.id = id;
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.password = password;
+    this.birthDay = birthDay;
+    this.email = email;
+    this.phone = phone;
+    this.fax = fax;
+    this.role_id = role;
+    this.civility_id = civility;
+    this.responsibility_id = responsibility;
+    }
+
 
     public int getId() {
         return id;
@@ -108,6 +140,14 @@ public class User {
         this.fax = fax;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public int getRole_id() {
         return role_id;
     }
@@ -135,8 +175,26 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "firstname='" + firstname + '\'' +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
+                ", birthDay='" + birthDay  + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", fax='" + fax + '\'' +
+                ", password='" + password + '\'' +
+                ", role_id=" + role_id +
+                ", civility_id=" + civility_id +
+                ", responsibility_id=" + responsibility_id +
                 '}';
     }
+
+    //    @Override
+//    public String toString() {
+//        return "User{" +
+//                "firstname='" + firstname + '\'' +
+//                ", lastname='" + lastname + '\'' +
+//                '}';
+//    }
+
 }

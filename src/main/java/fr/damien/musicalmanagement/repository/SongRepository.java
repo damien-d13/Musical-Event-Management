@@ -44,7 +44,7 @@ public class SongRepository {
 
             while (rs.next()) {
                 Song song = new Song(rs.getString("song_title"), rs.getDate("song_date"), rs.getTime("song_duration"));
-                System.out.println(song);
+//                System.out.println(song);
                 songObservableList.add(song);
             }
 

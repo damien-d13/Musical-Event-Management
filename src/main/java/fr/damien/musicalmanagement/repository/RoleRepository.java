@@ -19,7 +19,7 @@ public class RoleRepository {
 
             while (rs.next()) {
                 Role role = new Role(rs.getInt("role_id"), rs.getString("role_label") );
-                System.out.println(role);
+//                System.out.println(role);
                 allRoleObservableList.add(role);
             }
 

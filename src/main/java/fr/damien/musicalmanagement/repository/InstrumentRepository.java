@@ -20,7 +20,7 @@ public class InstrumentRepository {
 
             while (rs.next()) {
                 Instrument instrument = new Instrument(rs.getInt("instrument_id"), rs.getString("instrument_label"));
-                System.out.println(instrument);
+//                System.out.println(instrument);
                 instrumentObservableList.add(instrument);
             }
 

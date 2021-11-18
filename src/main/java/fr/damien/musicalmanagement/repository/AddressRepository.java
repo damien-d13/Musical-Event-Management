@@ -41,7 +41,7 @@ public class AddressRepository {
 
             while (rs.next()) {
                 Address address = new Address(rs.getInt("address_id"), rs.getString("address_label"));
-                System.out.println(address);
+//                System.out.println(address);
                 addressObservableList.add(address);
             }
 
@@ -62,7 +62,7 @@ public class AddressRepository {
 
             while (rs.next()) {
                 Address address = new Address(rs.getInt("address_id"), rs.getString("address_country"));
-                System.out.println(address);
+//                System.out.println(address);
                 addressObservableList.add(address);
             }
 

@@ -184,6 +184,7 @@ public class HomeController implements Initializable {
     private int groupId;
     private int specialityId;
     private int meetId;
+    private int roleId;
 
 
 
@@ -199,10 +200,10 @@ public class HomeController implements Initializable {
 
 
             songId = boxTitleGroup.getSelectionModel().getSelectedItem().getId();
-            System.out.println(boxTitleGroup.getSelectionModel().getSelectedItem().getId());
+//            System.out.println(boxTitleGroup.getSelectionModel().getSelectedItem().getId());
 
 
-            System.out.println(GroupRepository.getGroupBySongObservableList(songId));
+//            System.out.println(GroupRepository.getGroupBySongObservableList(songId));
 
 
 
@@ -230,12 +231,12 @@ public class HomeController implements Initializable {
 
         if (!boxAddress.getSelectionModel().isEmpty() && !boxGroup.getSelectionModel().isEmpty()) {
             addressId = boxAddress.getSelectionModel().getSelectedItem().getId();
-            System.out.println(boxAddress.getSelectionModel().getSelectedItem().getId());
+//            System.out.println(boxAddress.getSelectionModel().getSelectedItem().getId());
 
             groupId = boxGroup.getSelectionModel().getSelectedItem().getId();
-            System.out.println(boxGroup.getSelectionModel().getSelectedItem().getId());
+//            System.out.println(boxGroup.getSelectionModel().getSelectedItem().getId());
 
-            System.out.println(ProgramRepository.getProgramObservableList(groupId, addressId));
+//            System.out.println(ProgramRepository.getProgramObservableList(groupId, addressId));
 
 
 
@@ -268,12 +269,12 @@ public class HomeController implements Initializable {
 
 
             songId = boxTitle.getSelectionModel().getSelectedItem().getId();
-            System.out.println(songId);
-            System.out.println("TEST 1");
+//            System.out.println(songId);
+//            System.out.println("TEST 1");
 
             groupId = boxMeetGroup.getSelectionModel().getSelectedItem().getId();
 
-            System.out.println(MeetRepository.getMeetBySongGroupObservableList(groupId,songId));
+//            System.out.println(MeetRepository.getMeetBySongGroupObservableList(groupId,songId));
 
 
 
@@ -305,13 +306,13 @@ public class HomeController implements Initializable {
 
 
             specialityId = boxSpeciality.getSelectionModel().getSelectedItem().getId();
-            System.out.println(specialityId);
+//            System.out.println(specialityId);
 
 
             meetId = boxMeet.getSelectionModel().getSelectedItem().getId();
-            System.out.println(meetId);
+//            System.out.println(meetId);
 
-            System.out.println(MeetRepository.getMeetBySongGroupObservableList(groupId,songId));
+//            System.out.println(MeetRepository.getMeetBySongGroupObservableList(groupId,songId));
 
 
 
@@ -343,12 +344,12 @@ public class HomeController implements Initializable {
             timeValue = boxTime.getText();
 //            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:MM:SS");
             LocalTime timeMini = LocalTime.parse( timeValue) ;
-            System.out.println(timeMini);
+//            System.out.println(timeMini);
 
             countryId = boxCountry.getSelectionModel().getSelectedItem().getId();
-            System.out.println(countryId);
+//            System.out.println(countryId);
 
-            System.out.println(SongRepository.getSongByAddressTimeObservableList(countryId, timeMini));
+//            System.out.println(SongRepository.getSongByAddressTimeObservableList(countryId, timeMini));
 
 
 
@@ -383,11 +384,11 @@ public class HomeController implements Initializable {
 
 
             int nbGroup = Integer.parseInt(boxNbGroup.getText());
-            System.out.println(nbGroup);
-            System.out.println("TEST 2");
+//            System.out.println(nbGroup);
+//            System.out.println("TEST 2");
 
 
-            System.out.println(MeetRepository.getMeetByNbGroupObservableList(nbGroup));
+//            System.out.println(MeetRepository.getMeetByNbGroupObservableList(nbGroup));
 
 
 
@@ -418,11 +419,11 @@ public class HomeController implements Initializable {
 
 
             int instrumentId = boxInstrument.getSelectionModel().getSelectedItem().getId();
-            System.out.println(instrumentId);
-            System.out.println("TEST 2");
+//            System.out.println(instrumentId);
+//            System.out.println("TEST 2");
 
 
-            System.out.println(MeetRepository.getMeetByInstrumentObservableList(instrumentId));
+//            System.out.println(MeetRepository.getMeetByInstrumentObservableList(instrumentId));
 
 
 
@@ -481,16 +482,27 @@ public class HomeController implements Initializable {
     }
 
 
-    public void showUser(String userEmail) throws SQLException {
-        System.out.println(userEmail);
-        ResultSet rs = UserRepository.findUserInfo(userEmail);
+    public void showUser(String userEmail, int userRoleId) throws SQLException {
+//        System.out.println(userEmail);
+        userName.setText(userEmail);
 
-        if (rs.next()) {
-            userName.setText(rs.getString("user_firstname"));
-        }
+        roleId = userRoleId;
+        showAdmin(roleId);
+//        ResultSet rs = UserRepository.findUserInfo(userEmail);
+//
+//        if (rs.next()) {
+//            userName.setText(rs.getString("user_email"));
+//        }
 
     }
 
+    public void showAdmin(int roleId) {
+
+//        System.out.println(roleId);
+        if (roleId == 1) {
+            btnAdmin.setVisible(true);
+        }
+    }
     public void showAllAddress() {
 
 //        boxAddress.getItems().addAll(AddressRepository.getAddressList());
@@ -571,6 +583,7 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
 
         showAllAddress();
         showAllGroup();

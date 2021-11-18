@@ -24,7 +24,7 @@ public class GroupRepository {
 
             while (rs.next()) {
                 String group = rs.getString("group_label");
-                System.out.println(group);
+//                System.out.println(group);
                 groupList.add(group);
             }
         } catch (Exception e) {
@@ -44,7 +44,7 @@ public class GroupRepository {
 
             while (rs.next()) {
                 Group group = new Group(rs.getInt("group_id"), rs.getString("group_label"));
-                System.out.println(group);
+//                System.out.println(group);
                 groupObservableList.add(group);
             }
 
